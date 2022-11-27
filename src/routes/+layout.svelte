@@ -5,6 +5,7 @@
     import { auth } from '../firebase';
     import { goto } from '$app/navigation';
 
+
     async function logOut() {
         await signOut(auth);
         await goto('/');
