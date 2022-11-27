@@ -1,5 +1,8 @@
 <script>
-    import { Content, Header, SkipToContent, HeaderNav, HeaderNavItem, HeaderNavMenu } from 'carbon-components-svelte';
+    import {     SideNav,
+    SideNavItems,
+    SideNavMenu,
+    SideNavMenuItem,Content, Header, SkipToContent, HeaderNav, HeaderNavItem, HeaderNavMenu } from 'carbon-components-svelte';
     import "carbon-components-svelte/css/white.css";
     import { signOut } from 'firebase/auth';
     import { auth } from '../firebase';
@@ -15,17 +18,21 @@
 
 </script>
 
-<Header company="KJS" platformName="Sports Gaming" bind:isSideNavOpen>
+<Header company="KJS"   persistentHamburgerMenu={true} platformName="Sports Gaming" bind:isSideNavOpen>
   <svelte:fragment slot="skip-to-content">
     <SkipToContent />
   </svelte:fragment>
-  <HeaderNav>
-    <HeaderNavMenu text="NHL23">
-      <HeaderNavItem href="/nhl23/player-stats/ps5/ritti34" text="ritti34" />
-      <HeaderNavItem href="/nhl23/player-stats/ps5/kjdadada" text="kjdadada" />
-    </HeaderNavMenu>
-  </HeaderNav>
 </Header>
+<SideNav bind:isOpen={isSideNavOpen}>
+  <SideNavItems>
+    <SideNavMenu text="NHL23">
+      <SideNavMenuItem href="/nhl23/player-stats/ps5/ritti34" text="ritti34" />
+      <SideNavMenuItem href="/nhl23/player-stats/ps5/kjdadada" text="kjdadada" />
+    </SideNavMenu>
+  </SideNavItems>
+</SideNav>
+
+
 <Content>
   <slot></slot>
 </Content>
