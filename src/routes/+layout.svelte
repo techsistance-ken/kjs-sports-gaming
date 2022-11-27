@@ -20,7 +20,10 @@
     <SkipToContent />
   </svelte:fragment>
   <HeaderNav>
-    <HeaderNavItem href="/" text="NHL 23" />
+    <HeaderNavMenu text="NHL23">
+      <HeaderNavItem href="/nhl23/player-stats/ps5/ritti34" text="ritti34" />
+      <HeaderNavItem href="/nhl23/player-stats/ps5/kjdadada" text="kjdadada" />
+    </HeaderNavMenu>
   </HeaderNav>
 </Header>
 <Content>
