@@ -1,5 +1,5 @@
 <script>
-  import { Grid, Row, Column, Tile, Loading, ExpandableTile } from "carbon-components-svelte";
+  import { Grid, Row, Column, Tile, Loading, ExpandableTile, StructuredList, StructuredListHead, StructuredListRow, StructuredListCell } from "carbon-components-svelte";
   import SingleStat from "../../../../../components/stats/singlStat.svelte"
 
   /** @type {import('./$types').PageData} */
@@ -155,5 +155,31 @@
         </Column>
       </Row>
     </Grid>
+  </div>
+</ExpandableTile>
+
+<ExpandableTile>
+  <div slot="above"><p><b>Game History</b></p></div>
+  <div slot="below">
+    <StructuredList>
+      <StructuredListHead>
+        <StructuredListRow head>
+          <StructuredListCell head>Goals</StructuredListCell>
+          <StructuredListCell head>Assists</StructuredListCell>
+          <StructuredListCell head>hits</StructuredListCell>
+          <StructuredListCell head>plusMinus</StructuredListCell>
+        </StructuredListRow>
+      </StructuredListHead>
+      {#each data.playerStats.gameHistory as game, i}
+      <StructuredListRow>
+        <StructuredListCell noWrap>{game.goals}</StructuredListCell>
+        <StructuredListCell noWrap>{game.assists}</StructuredListCell>
+        <StructuredListCell>{game.hits}</StructuredListCell>
+        <StructuredListCell>{game.plusMinus}</StructuredListCell>
+      </StructuredListRow>
+      {/each} 
+    </StructuredList>
+      
+
   </div>
 </ExpandableTile>

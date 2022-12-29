@@ -1,5 +1,6 @@
 import { error } from '@sveltejs/kit';
-import { collectionGroup } from 'firebase/firestore';
+import { collectionGroup, getDocs } from 'firebase/firestore';
+import { descend, prop, reverse, sort } from 'ramda';
 import { db, doc, getDoc, collection } from '../../../../../firebase';
 
 /** @type {import('./$types').PageLoad} */
@@ -7,8 +8,13 @@ export async function load({ params }) {
 
   const q = await getDoc(doc(collection(db,`/nhl23/${params.platform}/players`),params.playerId))
 
+  const gameHistorySnapshot = await getDocs(collection(db,`/nhl23/${params.platform}/players/${params.playerId}/gameHistory`))
+  const gameHistoryUnsorted =  gameHistorySnapshot.docs.map(doc => doc.data());
+  const gameHistory = reverse(gameHistoryUnsorted)
+
 
   const playerStats = {
+    gameHistory,
     name: q.get("name"),
     goals: q.get("goals"),
     assists: q.get("assists"),
