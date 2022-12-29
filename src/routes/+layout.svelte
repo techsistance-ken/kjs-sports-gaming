@@ -32,6 +32,7 @@
       <SideNavMenu text="PLAYERS">
         <SideNavMenuItem href="/nhl23/player-stats/ps5/kjdadada" text="kjdadada" />
         <SideNavMenuItem href="/nhl23/player-stats/ps5/ritti34" text="ritti34" />
+        <SideNavMenuItem href="/nhl23/player-stats/ps5/pj26pj" text="pj26pj" />
       </SideNavMenu>
     </SideNavMenu>
   </SideNavItems>

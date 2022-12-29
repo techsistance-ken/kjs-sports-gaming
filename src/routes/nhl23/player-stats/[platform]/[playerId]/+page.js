@@ -5,13 +5,8 @@ import { db, doc, getDoc, collection } from '../../../../../firebase';
 /** @type {import('./$types').PageLoad} */
 export async function load({ params }) {
 
-  const querySnapshot = await getDoc(doc(collection(db,"/nhl23/player-stats/by-id"),`${params.playerId}-${params.platform}`));
-  let myDocs = "";
-  myDocs = await querySnapshot.get("path")
+  const q = await getDoc(doc(collection(db,`/nhl23/${params.platform}/players`),params.playerId))
 
-  const q = await getDoc(doc(db,"/nhl23/player-stats/"+myDocs));
-
-  const q2 = q.get("gamesplayed")
 
   const playerStats = {
     name: q.get("name"),
