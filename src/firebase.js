@@ -29,6 +29,7 @@ export {
     auth,
     doc,
     getDoc,
+    getDocs,
     collection,
     db
 }

@@ -26,8 +26,13 @@
 <SideNav bind:isOpen={isSideNavOpen}>
   <SideNavItems>
     <SideNavMenu text="NHL23">
-      <SideNavMenuItem href="/nhl23/player-stats/ps5/ritti34" text="ritti34" />
-      <SideNavMenuItem href="/nhl23/player-stats/ps5/kjdadada" text="kjdadada" />
+      <SideNavMenu text="CLUBS">
+        <SideNavMenuItem href="/nhl23/clubs/ps5/13156" text="AFC Richmond (PS5)" />
+      </SideNavMenu>
+      <SideNavMenu text="PLAYERS">
+        <SideNavMenuItem href="/nhl23/player-stats/ps5/kjdadada" text="kjdadada" />
+        <SideNavMenuItem href="/nhl23/player-stats/ps5/ritti34" text="ritti34" />
+      </SideNavMenu>
     </SideNavMenu>
   </SideNavItems>
 </SideNav>
