@@ -1,9 +1,16 @@
 <script>
-  import { Grid, Row, Column, Tile, Loading, ExpandableTile, StructuredList, StructuredListHead, StructuredListRow, StructuredListCell } from "carbon-components-svelte";
+  import { Modal, Grid, Row, Column, Tile, Loading, ExpandableTile, StructuredList, StructuredListHead, StructuredListRow, StructuredListCell, StructuredListBody } from "carbon-components-svelte";
+	import { keys, sort, sortBy, toPairs } from "ramda";
   import SingleStat from "../../../../../components/stats/singlStat.svelte"
 
   /** @type {import('./$types').PageData} */
   export let data;
+  let open = false;
+  let clickedGame;
+  const clickAGame = game => {
+    open = true;
+    clickedGame = game;
+  }
 </script>
 
 <h2>Stats for {data.playerStats.name}</h2>
@@ -158,12 +165,12 @@
   </div>
 </ExpandableTile>
 
-<ExpandableTile>
-  <div slot="above"><p><b>Game History</b></p></div>
-  <div slot="below">
-    <StructuredList>
+<Tile>
+    <StructuredList selection >
       <StructuredListHead>
         <StructuredListRow head>
+          <StructuredListCell head>Oponnent</StructuredListCell>
+          <StructuredListCell head>Result</StructuredListCell>
           <StructuredListCell head>Goals</StructuredListCell>
           <StructuredListCell head>Assists</StructuredListCell>
           <StructuredListCell head>hits</StructuredListCell>
@@ -171,7 +178,13 @@
         </StructuredListRow>
       </StructuredListHead>
       {#each data.playerStats.gameHistory as game, i}
-      <StructuredListRow>
+      <StructuredListRow on:click={() => clickAGame(game)} for="row-{game.matchId}">
+        <StructuredListCell noWrap>{game.oName}</StructuredListCell>
+        <StructuredListCell noWrap>
+          <div>
+            <div>{game.result}</div><div>{game.score}</div>
+          </div>
+        </StructuredListCell>
         <StructuredListCell noWrap>{game.goals}</StructuredListCell>
         <StructuredListCell noWrap>{game.assists}</StructuredListCell>
         <StructuredListCell>{game.hits}</StructuredListCell>
@@ -179,7 +192,27 @@
       </StructuredListRow>
       {/each} 
     </StructuredList>
+    <Modal passiveModal bind:open modalHeading="Game History" on:open on:close>
+        <p>Game: {clickedGame ? clickedGame.matchId : "Not Found"}</p>
+        <StructuredList>
+          <StructuredListHead>
+            <StructuredListRow head>
+              <StructuredListCell head>Label</StructuredListCell>
+              <StructuredListCell head>Value</StructuredListCell>
+            </StructuredListRow>
+          </StructuredListHead>
+          <StructuredListBody>
+
+            {#each sortBy(y => y[0],toPairs(clickedGame)) as x}
+            <StructuredListRow >
+              <StructuredListCell>{x[0]}</StructuredListCell>
+              <StructuredListCell>{x[1]}</StructuredListCell>
+            </StructuredListRow>
+            {/each}
+          </StructuredListBody>
+
+        </StructuredList>
+    </Modal>
       
 
-  </div>
-</ExpandableTile>
+</Tile>
