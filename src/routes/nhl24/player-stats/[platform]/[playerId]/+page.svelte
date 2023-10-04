@@ -15,7 +15,7 @@
 
 <h2>Stats for {data.playerStats.name}</h2>
 
-
+<div>
 <ExpandableTile>
   <div slot="above">
     <Grid>
@@ -164,12 +164,12 @@
     </Grid>
   </div>
 </ExpandableTile>
-
+</div>
 <Tile>
     <StructuredList selection >
       <StructuredListHead>
         <StructuredListRow head>
-          <StructuredListCell head>Oponnent</StructuredListCell>
+          <StructuredListCell sm={0} md={8} lg={8} xlg={8} max={8} head>Oponnent</StructuredListCell>
           <StructuredListCell head>Result</StructuredListCell>
           <StructuredListCell head>Goals</StructuredListCell>
           <StructuredListCell head>Assists</StructuredListCell>

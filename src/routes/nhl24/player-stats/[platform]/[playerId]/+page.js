@@ -1,16 +1,17 @@
 import { error } from '@sveltejs/kit';
 import { collectionGroup, getDocs } from 'firebase/firestore';
-import { descend, prop, sort } from 'ramda';
+import { descend, length, map, prop, reverse, sort } from 'ramda';
 import { db, doc, getDoc, collection } from '../../../../../firebase';
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ params }) {
 
-  const q = await getDoc(doc(collection(db,`/nhl23/${params.platform}/players`),params.playerId))
+  const q = await getDoc(doc(collection(db,`/nhl24/${params.platform}/players`),params.playerId))
 
-  const gameHistorySnapshot = await getDocs(collection(db,`/nhl23/${params.platform}/players/${params.playerId}/gameHistory`))
+  const gameHistorySnapshot = await getDocs(collection(db,`/nhl24/${params.platform}/players/${params.playerId}/gameHistory`))
   const gameHistoryUnsorted =  gameHistorySnapshot.docs.map(doc => doc.data());
   const gameHistory= sort(descend(prop("timestamp")),gameHistoryUnsorted)
+
 
   const playerStats = {
     gameHistory,

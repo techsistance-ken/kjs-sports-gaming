@@ -9,6 +9,9 @@
     import { goto } from '$app/navigation';
 
 
+    let theme = "white"; // "white" | "g10" | "g80" | "g90" | "g100"
+
+    
     async function logOut() {
         await signOut(auth);
         await goto('/');
@@ -25,14 +28,14 @@
 </Header>
 <SideNav bind:isOpen={isSideNavOpen}>
   <SideNavItems>
-    <SideNavMenu text="NHL23">
+    <SideNavMenu text="NHL24">
       <SideNavMenu text="CLUBS">
-        <SideNavMenuItem href="/nhl23/clubs/ps5/13156" text="AFC Richmond (PS5)" />
+        <SideNavMenuItem href="/nhl24/clubs/ps5/1620" text="Respect the Indian" />
       </SideNavMenu>
       <SideNavMenu text="PLAYERS">
-        <SideNavMenuItem href="/nhl23/player-stats/ps5/kjdadada" text="kjdadada" />
-        <SideNavMenuItem href="/nhl23/player-stats/ps5/ritti34" text="ritti34" />
-        <SideNavMenuItem href="/nhl23/player-stats/ps5/pj26pj" text="pj26pj" />
+        <SideNavMenuItem href="/nhl24/player-stats/ps5/kjdadada" text="kjdadada" />
+        <SideNavMenuItem href="/nhl24/player-stats/ps5/ritti34" text="ritti34" />
+        <SideNavMenuItem href="/nhl24/player-stats/ps5/pj26pj" text="pj26pj" />
       </SideNavMenu>
     </SideNavMenu>
   </SideNavItems>
