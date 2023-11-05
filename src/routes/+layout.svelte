@@ -21,7 +21,7 @@
 
 </script>
 
-<Header company="KJS"   persistentHamburgerMenu={true} platformName="Sports Gaming" bind:isSideNavOpen>
+<Header company="KJS"   persistentHamburgerMenu={true} platformName="Sports Gaming" isSideNavOpen>
   <svelte:fragment slot="skip-to-content">
     <SkipToContent />
   </svelte:fragment>
