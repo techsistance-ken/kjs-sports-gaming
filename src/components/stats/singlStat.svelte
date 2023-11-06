@@ -6,7 +6,7 @@
 
 <Grid>
     <Row>
-        <Column>
+        <Column style="font-weight: bolder;">
             {label}
         </Column>
     </Row>
