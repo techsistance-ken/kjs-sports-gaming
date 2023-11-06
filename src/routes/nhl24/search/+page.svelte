@@ -11,6 +11,8 @@
 
 
      } from "carbon-components-svelte";
+     import { goto } from '$app/navigation';
+
 	import { always, update } from "ramda";
     let searchTerm = "";
     let lastKey=""
@@ -31,14 +33,7 @@
     }
 
     const makeResultRow = clubData => `
-        <div class="club-search-item-row">
-            <div class="club-search-cell club-search-item-name">
-                ${clubData.clubName}
-            </div>
-            <div class="club-search-cell club-search-item-record">
-                ${clubData.record}
-            </div>
-        </div> 
+
         `;
 
     const updatePageStatus = (/** @type {string} */ status)  => {
@@ -64,8 +59,13 @@
             default: 
         }
         pageStatus = status;
+
+
+
     }
 
+    const gotoClub = row => 
+        goto(`/nhl24/search/${row.platform}/${row.id}`, { replaceState: false}) 
     const executeSearch = () => {
 
         if(searchTerm.length < 3) {
@@ -76,6 +76,9 @@
 
         fetch("https://us-central1-eashl-db46.cloudfunctions.net/eashl-search-fun",{
             method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
             body: JSON.stringify({
                 searchTerm,
                 platform: platform
@@ -155,7 +158,14 @@
    {:else}
         <div class="club-search-item-list">
             {#each clubResults as club}
-                {@html makeResultRow(club)}
+                <div on:keydown={gotoClub(club)} on:click={gotoClub(club)} class="club-search-item-row">
+                    <div class="club-search-cell club-search-item-name">
+                        {club.clubName}
+                    </div>
+                    <div class="club-search-cell club-search-item-record">
+                        {club.record}
+                    </div>
+                </div>  
             {/each}
         </div>
    {/if}
