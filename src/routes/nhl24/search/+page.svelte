@@ -1,8 +1,15 @@
 <script>
     import { Search, 
         ButtonSet, 
+        InlineNotification,
         Button,
-        ProgressBar
+        ProgressBar,
+
+		RadioButtonGroup,
+
+		RadioButton
+
+
      } from "carbon-components-svelte";
 	import { always, update } from "ramda";
     let searchTerm = "";
@@ -11,6 +18,8 @@
     let progressBarHidden = true;
     let searchDisabled = false;
     let clubResults = [];
+    let platform="common-gen5"
+    let searchError = "";
 
 
 
@@ -37,10 +46,12 @@
             case "fresh":
                 progressBarHidden = true;
                 searchDisabled = false;
+                searchError = "";
                 break;
             case "loading":
                 progressBarHidden = false;
                 searchDisabled = true;
+                searchError = "";
                 break;
             case "loaded":
                 progressBarHidden = true;
@@ -56,13 +67,18 @@
     }
 
     const executeSearch = () => {
+
+        if(searchTerm.length < 3) {
+            searchError = "Club name must be at least 3 characters."
+            return; 
+        }
         updatePageStatus("loading");
 
         fetch("https://us-central1-eashl-db46.cloudfunctions.net/eashl-search-fun",{
             method: "POST",
             body: JSON.stringify({
                 searchTerm,
-                platform: "common-gen5"
+                platform: platform
             })
         })
           .then(x => x.json())
@@ -72,29 +88,45 @@
             updatePageStatus("error");
           })
     }
-</script>
+    let innerWidth =0;
+    let innerHeight = 0;
 
+</script>
+<svelte:window bind:innerWidth bind:innerHeight />
 
 <h2>Search</h2>
 <Search disabled={searchDisabled} placeholder="Search by Club Name. . ." on:keydown={x => x.code === "Enter" ? executeSearch() : always(1)} bind:value={searchTerm}/>
-<div>Value: {lastKey}</div>
-
+{#if searchError != ""}
+<InlineNotification
+    title="Error:"
+    subtitle={searchError}
+/>
+{/if}
 {#if !progressBarHidden}
 <div> 
     &nbsp;
-    {pageStatus}
     <ProgressBar  helperText="Loading . . ." />
 </div>
 {/if}
+<div style="margin-top: 12px;">
+    <RadioButtonGroup
+        legendText="Platform"
+        name="platform"
+        bind:selected={platform}
+    >
+        <RadioButton labelText="Current Gen" value="common-gen5" />
+        <RadioButton labelText="Previous Gen" value="common-gen4" />
+    </RadioButtonGroup>
 
-<div>
-    <ButtonSet>
+</div>
+<div style="margin-top: 24px; margin-bottom: 24px;">
+    <ButtonSet stacked={innerWidth<640}>
       <Button
         size="small"
         disabled={searchDisabled}
         on:click={executeSearch}
       >
-        Set value
+        Search
       </Button>
       <Button
         kind="ghost"
@@ -102,7 +134,7 @@
         disabled={searchTerm.length === 0}
         on:click={() => {searchTerm= ""; updatePageStatus("fresh") }}
       >
-        Clear value
+        Clear Search
       </Button>
     </ButtonSet>
   </div>
@@ -139,7 +171,7 @@
         background-color: #efefee;
         margin: 18px 18px 18px 18px;
         padding: 18px;
-        width: 720px;
+        width: 96%;
         display: table;
         /* table-layout: fixed; */
         border-spacing: 0 10px;

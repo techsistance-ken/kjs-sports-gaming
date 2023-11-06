@@ -18,10 +18,13 @@
     }
 
     let isSideNavOpen = false;
+    let innerWidth = 0
+    let innerHeight = 0
 
 </script>
+<svelte:window bind:innerWidth bind:innerHeight />
 
-<Header company="KJS"   persistentHamburgerMenu={true} platformName="Sports Gaming" isSideNavOpen>
+<Header company="KJS"   persistentHamburgerMenu={true} platformName="Sports Gaming" bind:isSideNavOpen>
   <svelte:fragment slot="skip-to-content">
     <SkipToContent />
   </svelte:fragment>
@@ -29,6 +32,7 @@
 <SideNav bind:isOpen={isSideNavOpen}>
   <SideNavItems>
     <SideNavMenu text="NHL24">
+      <SideNavMenuItem href="/nhl24/search" text="Search For Clubs" />
       <SideNavMenu text="CLUBS">
         <SideNavMenuItem href="/nhl24/clubs/ps5/1620" text="Respect the Indian" />
       </SideNavMenu>
@@ -45,8 +49,9 @@
 <Content>
   <slot></slot>
 </Content>
-<footer>
-</footer>
+<!-- <footer>
+  {innerHeight} {innerWidth}
+</footer> -->
 <style>
     nav {
         display: flex;
