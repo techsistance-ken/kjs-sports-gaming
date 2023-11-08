@@ -29,10 +29,8 @@ export async function load({ params }) {
    // @ts-ignore
    data = prop("success",data[0]) ? assoc("status","loaded")(data) : assoc("status","error")(data);
 
-   console.log(data)
    
-   
-
+   console.log(prop("1",data).members[0])
 
    }
    catch(e) {

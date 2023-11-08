@@ -1,5 +1,5 @@
 <script>
-	import { Breadcrumb, BreadcrumbItem, Column, Grid, Row } from 'carbon-components-svelte';
+	import { Accordion, AccordionItem, Breadcrumb, BreadcrumbItem, Button, Column, Grid, Row, Tooltip } from 'carbon-components-svelte';
 	import { prop } from 'ramda';
     import SinglStat from '../../../../../../src/components/stats/singlStat.svelte';
 
@@ -8,6 +8,7 @@
 
 
         let bgColor = "#DDDDEE";
+        let memberStatHidden = [];
         $: dyncss = `--row-bg-color=yellow;`
 
 
@@ -15,35 +16,38 @@
 
 
 
+        const NDX_CLUB_STATS = "0";
+        const NDX_MEMBER_STATS = "1";
+        const NDX_CLUB_INFO = "2"
 
 </script>
 
+
+{#if data.data.status === "error"}
+   <h2>No Data</h2> 
+{:else}
+
 <Breadcrumb noTrailingSlash>
     <BreadcrumbItem href="/nhl24/search">Search</BreadcrumbItem>
-    <BreadcrumbItem>Respect the Indian</BreadcrumbItem>
+    <BreadcrumbItem>{prop(NDX_CLUB_INFO,data.data).info.name}</BreadcrumbItem>
 </Breadcrumb>
 <br>
 <h2>Club Information</h2>
-
-{#if data.data.status === "error"}
-    No Data
-{:else}
-
 <!-- {JSON.stringify(data.data)} -->
 
 <div class="stat-card clubdata">
     <Grid>
         <Row>
-        <Column><SinglStat label="Division" value={prop("0",data.data).stats.currentDivision} /></Column>
-        <Column><SinglStat label="Seasons" value={prop("0",data.data).stats.seasons} /></Column>
-        <Column><SinglStat label="Titles" value={prop("0",data.data).stats.titles} /></Column>
-        <Column><SinglStat label="Goals Allowed" value={prop("0",data.data).stats.goalsAgainst} /></Column>
+        <Column><SinglStat label="Division" value={prop(NDX_CLUB_STATS,data.data).stats.currentDivision} /></Column>
+        <Column><SinglStat label="Seasons" value={prop(NDX_CLUB_STATS,data.data).stats.seasons} /></Column>
+        <Column><SinglStat label="Titles" value={prop(NDX_CLUB_STATS,data.data).stats.titles} /></Column>
+        <Column><SinglStat label="Goals Allowed" value={prop(NDX_CLUB_STATS,data.data).stats.goalsAgainst} /></Column>
         </Row>
     </Grid>
 </div>
 <div class="stat-card members">
     <h4>Members</h4>
-        {#each prop("1",data.data).members as member, index}
+        {#each prop(NDX_MEMBER_STATS,data.data).members as member, index}
         <div class="member-container">
 
         <div class="member-header">
@@ -109,7 +113,94 @@
                 <Column><SinglStat label="Brkawy %" value={member.breakawaypct} /></Column>
             </Row> -->
         </div>
-        </div>
+
+
+          <Accordion align="start">
+            <AccordionItem title="More Stats">
+                <div class="ind-stat-card">
+                    <div class="ind-stat-label">
+                    Breakaways
+                    </div>
+                    <div class="ind-stat-value">
+                    {member.brkgoals}-{member.breakaways} ({member.breakawaypct}%)
+                    </div>
+                </div>  
+                <div class="ind-stat-card">
+                    <div class="ind-stat-label">
+                        Faceoffs
+                    </div>
+                    <div class="ind-stat-value">
+                    W:{member.fow} L:{member.fol} ({member.fop}%)
+                    </div>
+                </div>  
+                <div class="ind-stat-card">
+                    <div class="ind-stat-label">
+                        Pen. Shots
+                    </div>
+                    <div class="ind-stat-value">
+                    {member.penaltyshotgoals}-{member.penaltyattempts} ({member.penaltyshotpct}%)
+                    </div>
+                </div>  
+                <div class="ind-stat-card">
+                    <div class="ind-stat-label">
+                        Hits
+                    </div>
+                    <div class="ind-stat-value">
+                    {member.hits} avg: {member.hitspg}
+                    </div>
+                </div>  
+                <div class="ind-stat-card">
+                    <div class="ind-stat-label">
+                        Dekes 
+                    </div>
+                    <div class="ind-stat-value">
+                    {member.dekesmade}-{member.dekes} {((parseInt(member.dekesmade)/parseInt(member.dekes))*100).toFixed(1)}%
+                    </div>
+                </div>  
+                <div class="ind-stat-card">
+                    <div class="ind-stat-label">
+                      Hat Tricks 
+                    </div>
+                    <div class="ind-stat-value">
+                    {member.hattricks} 
+                    </div>
+                </div>  
+                <div class="ind-stat-card">
+                    <div class="ind-stat-label">
+                      Passing
+                    </div>
+                    <div class="ind-stat-value">
+                    {member.passes}-{member.passattempts} ({member.passpct}%) 
+                    </div>
+                </div>  
+                <div class="ind-stat-card">
+                    <div class="ind-stat-label">
+                      Defense 
+                    </div>
+                    <div class="ind-stat-value">
+                      <Tooltip direction="right">
+                        <p>BS: Blocked Shots</p>
+                        <p>D: Deflections</p>
+                      </Tooltip> 
+                    &nbsp;&nbsp;BS:{member.bs} D:{member.deflections}
+                    </div>
+                </div>  
+                <div class="ind-stat-card">
+                    <div class="ind-stat-label">
+                        Turnovers
+                    </div>
+                    <div class="ind-stat-value">
+                      <Tooltip direction="right">
+                        <p>G: Giveaways</p>
+                        <p>T: Takeaways</p>
+                        <p>I: Interceptions</p>
+                      </Tooltip> 
+                     &nbsp;&nbsp;G:{member.giveaways} T:{member.takeaways} I:{member.interceptions}
+                    </div>
+                </div>  
+    </AccordionItem>
+    </Accordion>
+    </div>
         
         {/each}
 </div>
@@ -178,5 +269,21 @@
     padding: 16px;
     border-radius: 8px;
     background-color: #FED8B1;
+}
+
+.ind-stat-card {
+  display: inline-flex;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  background-color: #F6F6F6;
+  border-radius: 4px;
+  padding: 10px;
+}
+.ind-stat-label {
+  font-weight: bolder;
+  margin-right: 8px;
+}
+.ind-stat-value {
+    display: inline-flex;
 }
 </style>

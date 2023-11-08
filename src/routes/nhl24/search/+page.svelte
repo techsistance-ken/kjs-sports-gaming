@@ -29,7 +29,6 @@
     const parseSearchResults = results => {
         updatePageStatus("loaded");
         clubResults = results;
-        console.log(results)
     }
 
     const makeResultRow = clubData => `
@@ -87,7 +86,6 @@
           .then(x => x.json())
           .then(parseSearchResults)
           .catch(e => {
-            console.log(e)
             updatePageStatus("error");
           })
     }
