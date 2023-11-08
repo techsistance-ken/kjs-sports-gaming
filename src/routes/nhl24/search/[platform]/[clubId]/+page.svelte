@@ -154,7 +154,7 @@
                         Dekes 
                     </div>
                     <div class="ind-stat-value">
-                    {member.dekesmade}-{member.dekes} {((parseInt(member.dekesmade)/parseInt(member.dekes))*100).toFixed(1)}%
+                    {member.dekesmade}-{member.dekes} {member.dekes === "0" ? "0%" : ((parseInt(member.dekesmade)/parseInt(member.dekes))*100).toFixed(1)}%
                     </div>
                 </div>  
                 <div class="ind-stat-card">
