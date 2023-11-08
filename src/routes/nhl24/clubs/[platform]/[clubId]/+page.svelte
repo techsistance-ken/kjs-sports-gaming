@@ -24,7 +24,7 @@
   {#each data.seasonGames as game, i}
   <StructuredListRow>
     <StructuredListCell noWrap>{game.resultDesc}</StructuredListCell>
-    <StructuredListCell>{game.oName}</StructuredListCell>
+    <StructuredListCell>{game.oName} {game.oRecord ? `(${game.oRecord})` : ""}</StructuredListCell>
     <StructuredListCell>{game.goals} - {game.ogoals}</StructuredListCell>
   </StructuredListRow>
   {/each} 

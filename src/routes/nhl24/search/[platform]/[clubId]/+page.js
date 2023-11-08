@@ -11,10 +11,10 @@ export async function load({ params }) {
 
     try {
 
-        const response = await fetch("https://us-central1-eashl-db46.cloudfunctions.net/eashl-search-fun",{
+        const response = await fetch("https://eashl-ohxio2uirq-uc.a.run.app/club",{
         method: "POST",
         headers: {
-            "content-type": "application/json"
+            "content-type": "application/json",
         },
         body: JSON.stringify({
             type: "by-id",

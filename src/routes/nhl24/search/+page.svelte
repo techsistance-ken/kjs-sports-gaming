@@ -74,7 +74,7 @@
         }
         updatePageStatus("loading");
 
-        fetch("https://us-central1-eashl-db46.cloudfunctions.net/eashl-search-fun",{
+        fetch("https://eashl-ohxio2uirq-uc.a.run.app/search",{
             method: "POST",
             headers: {
                 'content-type': 'application/json'

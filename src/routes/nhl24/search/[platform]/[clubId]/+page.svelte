@@ -1,5 +1,5 @@
 <script>
-	import { Column, Grid, Row } from 'carbon-components-svelte';
+	import { Breadcrumb, BreadcrumbItem, Column, Grid, Row } from 'carbon-components-svelte';
 	import { prop } from 'ramda';
     import SinglStat from '../../../../../../src/components/stats/singlStat.svelte';
 
@@ -17,6 +17,12 @@
 
 
 </script>
+
+<Breadcrumb noTrailingSlash>
+    <BreadcrumbItem href="/nhl24/search">Search</BreadcrumbItem>
+    <BreadcrumbItem>Respect the Indian</BreadcrumbItem>
+</Breadcrumb>
+<br>
 <h2>Club Information</h2>
 
 {#if data.data.status === "error"}
@@ -45,7 +51,7 @@
                 {member.name}
             </div>
             <div class="member-header-info">
-                {member.favoritePosition} | {member.record}
+                {member.favoritePosition} | {member.record} | {member.clientPlatform}
             </div>
         </div>
         <div class="stat-block-container">
@@ -75,7 +81,7 @@
            </div>
            <div class="stat-block">
                <div class="stat-label">
-                 Points 
+                P
               </div>
               <div class="stat-value">
                 {member.points}
@@ -164,12 +170,13 @@
 .member-header-name {
     font-size: large;
     font-weight: bolder;
+    margin-bottom: 8px;
 }
 .member-container {
     border: solid 1px gray;
     margin: 8px;
     padding: 16px;
     border-radius: 8px;
-    background-color: #E3F1FC;
+    background-color: #FED8B1;
 }
 </style>
