@@ -1,7 +1,8 @@
 <script>
-	import { Accordion, AccordionItem, Breadcrumb, BreadcrumbItem, Button, Column, Grid, Row, Tooltip } from 'carbon-components-svelte';
-	import { prop } from 'ramda';
+	import { Accordion, AccordionItem, Breadcrumb, BreadcrumbItem, Button, Column, Grid, Row, Tag, Toggle, Tooltip } from 'carbon-components-svelte';
+	import { map, prop } from 'ramda';
     import SinglStat from '../../../../../../src/components/stats/singlStat.svelte';
+	import GameHistoryTable from '../../../../../../src/components/GameHistoryTable.svelte';
 
         /** @type {import('./$types').PageData} */
         export let data;
@@ -9,6 +10,8 @@
 
         let bgColor = "#DDDDEE";
         let memberStatHidden = [];
+        let showMembers = true;
+        let showSchedule = true;
         $: dyncss = `--row-bg-color=yellow;`
 
 
@@ -18,21 +21,31 @@
 
         const NDX_CLUB_STATS = "0";
         const NDX_MEMBER_STATS = "1";
-        const NDX_CLUB_INFO = "2"
+        const NDX_CLUB_INFO = "2";
+        const NDX_SEASONS_MATCHES = "3";
 
 </script>
 
 
 {#if data.data.status === "error"}
+<Breadcrumb noTrailingSlash>
+    <BreadcrumbItem href="/nhl24">Home</BreadcrumbItem>
+    <BreadcrumbItem href="/nhl24/search">Search</BreadcrumbItem>
+</Breadcrumb>
    <h2>No Data</h2> 
 {:else}
 
 <Breadcrumb noTrailingSlash>
+    <BreadcrumbItem href="/nhl24">Home</BreadcrumbItem>
     <BreadcrumbItem href="/nhl24/search">Search</BreadcrumbItem>
     <BreadcrumbItem>{prop(NDX_CLUB_INFO,data.data).info.name}</BreadcrumbItem>
 </Breadcrumb>
 <br>
 <h2>Club Information</h2>
+<div style="margin: 12px 0 18px; 0; display: flex; width: 98%; justify-content: center; aligh-items: center; flex-direction: column;">
+    <h3 style="align-self: center;">{prop(NDX_CLUB_INFO,data.data).info.name}</h3>
+    <h4 style="align-self: center;">{prop(NDX_CLUB_STATS,data.data).stats.record}</h4>
+</div>
 <!-- {JSON.stringify(data.data)} -->
 
 <div class="stat-card clubdata">
@@ -45,8 +58,14 @@
         </Row>
     </Grid>
 </div>
+<div style="margin-top: 12px;">
+    <span>Show: </span> 
+    <Tag type={showMembers ? "green" : "red"} on:click={() => showMembers = !showMembers} interactive>Members</Tag> 
+    <Tag type={showSchedule ? "green" : "red"} on:click={() => showSchedule = !showSchedule} interactive>Schedule</Tag> 
+</div>
+<div hidden={!showMembers}>
 <div class="stat-card members">
-    <h4>Members</h4>
+<h4>Members</h4>
         {#each prop(NDX_MEMBER_STATS,data.data).members as member, index}
         <div class="member-container">
 
@@ -154,7 +173,7 @@
                         Dekes 
                     </div>
                     <div class="ind-stat-value">
-                    {member.dekesmade}-{member.dekes} {member.dekes === "0" ? "0%" : ((parseInt(member.dekesmade)/parseInt(member.dekes))*100).toFixed(1)}%
+                    {member.dekesmade}-{member.dekes} {member.dekes === "0" ? "0" : ((parseInt(member.dekesmade)/parseInt(member.dekes))*100).toFixed(1)}%
                     </div>
                 </div>  
                 <div class="ind-stat-card">
@@ -204,8 +223,16 @@
         
         {/each}
 </div>
-{/if}
+</div>
 
+<div style="margin-top: 18px;" hidden={!showSchedule}>
+<div class="stat-card schedule">
+<h4>Schedule</h4>
+    <GameHistoryTable matches={map(x => x.matchStats)(prop(NDX_SEASONS_MATCHES,data.data).matches)} >
+    </GameHistoryTable>
+</div>
+</div>
+{/if}
 
 <style>
 

@@ -7,7 +7,13 @@
 
 		RadioButtonGroup,
 
-		RadioButton
+		RadioButton,
+
+		Breadcrumb
+,
+
+		BreadcrumbItem
+
 
 
      } from "carbon-components-svelte";
@@ -94,7 +100,10 @@
 
 </script>
 <svelte:window bind:innerWidth bind:innerHeight />
-
+<Breadcrumb noTrailingSlash>
+    <BreadcrumbItem href="/nhl24">Home</BreadcrumbItem>
+    <BreadcrumbItem>Search</BreadcrumbItem>
+</Breadcrumb>
 <h2>Search</h2>
 <Search disabled={searchDisabled} placeholder="Search by Club Name. . ." on:keydown={x => x.code === "Enter" ? executeSearch() : always(1)} bind:value={searchTerm}/>
 {#if searchError != ""}
@@ -156,7 +165,10 @@
    {:else}
         <div class="club-search-item-list">
             {#each clubResults as club}
-                <div on:keydown={gotoClub(club)} on:click={gotoClub(club)} class="club-search-item-row">
+                <div 
+                    on:keydown={gotoClub(club)} 
+                    on:click={gotoClub(club)} 
+                    class="club-search-item-row">
                     <div class="club-search-cell club-search-item-name">
                         {club.clubName}
                     </div>
