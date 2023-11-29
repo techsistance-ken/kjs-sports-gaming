@@ -30,7 +30,6 @@ export async function load({ params }) {
    data = prop("success",data[0]) ? assoc("status","loaded")(data) : assoc("status","error")(data);
 
    
-   console.log(prop("1",data).members[0])
 
    }
    catch(e) {
@@ -40,5 +39,7 @@ export async function load({ params }) {
 
   return {
     data,
+    platform,
+    clubId
   };
 }

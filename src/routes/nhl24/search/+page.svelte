@@ -4,22 +4,19 @@
         InlineNotification,
         Button,
         ProgressBar,
-
 		RadioButtonGroup,
-
 		RadioButton,
-
-		Breadcrumb
-,
-
-		BreadcrumbItem
-
-
-
+		Breadcrumb,
+		BreadcrumbItem,
+		Tab,
+		TabContent,
+		Tabs
      } from "carbon-components-svelte";
      import { goto } from '$app/navigation';
 
 	import { always, update } from "ramda";
+
+
     let searchTerm = "";
     let lastKey=""
     let pageStatus = "fresh";
@@ -28,6 +25,7 @@
     let clubResults = [];
     let platform="common-gen5"
     let searchError = "";
+    let tabSelected=0;
 
 
 
@@ -72,6 +70,7 @@
     const gotoClub = row => 
         goto(`/nhl24/search/${row.platform}/${row.id}`, { replaceState: false}) 
     const executeSearch = () => {
+        tabSelected = 0;
 
         if(searchTerm.length < 3) {
             searchError = "Club name must be at least 3 characters."
@@ -149,41 +148,53 @@
     </ButtonSet>
   </div>
 
-{#if pageStatus === "fresh"}
-  <div>
-    Search for a club . . .
-  </div>
-{:else if pageStatus === "error"}
-   <div> 
-     Error 
-   </div>
-{:else if pageStatus === "loaded"}
-   {#if clubResults.length == 0} 
+  <Tabs bind:selected={tabSelected}>
+    <Tab label="Search Results" />
+    <Tab label="Recent Searches" />
+    <Tab label="Favorite Clubs" />
+    <svelte:fragment slot="content">
+      <TabContent>
+        {#if pageStatus === "fresh"}
         <div>
-            No Clubs Found
+          Search for a club . . .
         </div>
-   {:else}
-        <div class="club-search-item-list">
-            {#each clubResults as club}
-                <div 
-                    on:keydown={gotoClub(club)} 
-                    on:click={gotoClub(club)} 
-                    class="club-search-item-row">
-                    <div class="club-search-cell club-search-item-name">
-                        {club.clubName}
-                    </div>
-                    <div class="club-search-cell club-search-item-record">
-                        {club.record}
-                    </div>
-                </div>  
-            {/each}
-        </div>
-   {/if}
-{:else if pageStatus === "loading"}
-   <div>
-      &nbsp;
-   </div>
-{/if}
+      {:else if pageStatus === "error"}
+         <div> 
+           Error 
+         </div>
+      {:else if pageStatus === "loaded"}
+         {#if clubResults.length == 0} 
+              <div>
+                  No Clubs Found
+              </div>
+         {:else}
+              <div class="club-search-item-list">
+                  {#each clubResults as club}
+                      <div 
+                          on:keydown={gotoClub(club)} 
+                          on:click={gotoClub(club)} 
+                          class="club-search-item-row">
+                          <div class="club-search-cell club-search-item-name">
+                              {club.clubName}
+                          </div>
+                          <div class="club-search-cell club-search-item-record">
+                              {club.record}
+                          </div>
+                      </div>  
+                  {/each}
+              </div>
+         {/if}
+      {:else if pageStatus === "loading"}
+         <div>
+            &nbsp;
+         </div>
+      {/if} 
+        </TabContent>
+      <TabContent>Coming Soon. . .</TabContent>
+      <TabContent>Coming Soon. . .</TabContent>
+    </svelte:fragment>
+  </Tabs>
+
 
 
   <style>

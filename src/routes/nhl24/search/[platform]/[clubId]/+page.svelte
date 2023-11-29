@@ -1,8 +1,14 @@
 <script>
-	import { Accordion, AccordionItem, Breadcrumb, BreadcrumbItem, Button, Column, Grid, Row, Tag, Toggle, Tooltip } from 'carbon-components-svelte';
+	import { Accordion, AccordionItem, Breadcrumb, BreadcrumbItem, Button, Column, Grid, RadioButton, RadioButtonGroup, Row, Tag, Toggle, Tooltip } from 'carbon-components-svelte';
 	import { map, prop } from 'ramda';
     import SinglStat from '../../../../../../src/components/stats/singlStat.svelte';
 	import GameHistoryTable from '../../../../../../src/components/GameHistoryTable.svelte';
+	import { collection, db, doc, getDoc } from '../../../../../firebase.js';
+        const loadClubFromDb = (platform,clubId) => {
+            getDoc(doc(collection(db,`/nhl24/ps5/clubs`),clubId))
+              .then(x => alert(x.get("name")))
+              .catch(e => alert(e))
+        }
 
         /** @type {import('./$types').PageData} */
         export let data;
@@ -17,12 +23,15 @@
 
         const getdyncss = index => index % 2 == 0 ? `--row-bg-color:#F3FFFF;` : `--row-bg-color:#FFFFF3;`
 
+        const schedules = ["Season Matches", "Finals Matches"];;
+        let selectedSchedule = schedules[1];
 
 
         const NDX_CLUB_STATS = "0";
         const NDX_MEMBER_STATS = "1";
         const NDX_CLUB_INFO = "2";
         const NDX_SEASONS_MATCHES = "3";
+        const NDX_FINALS_MATCHES = "4";
 
 </script>
 
@@ -40,6 +49,8 @@
     <BreadcrumbItem href="/nhl24/search">Search</BreadcrumbItem>
     <BreadcrumbItem>{prop(NDX_CLUB_INFO,data.data).info.name}</BreadcrumbItem>
 </Breadcrumb>
+<h2>Load From DB</h2>
+<Button on:click={() => loadClubFromDb(data.platform,data.clubId)}>Load From FB</Button>
 <br>
 <h2>Club Information</h2>
 <div style="margin: 12px 0 18px; 0; display: flex; width: 98%; justify-content: center; aligh-items: center; flex-direction: column;">
@@ -228,8 +239,20 @@
 <div style="margin-top: 18px;" hidden={!showSchedule}>
 <div class="stat-card schedule">
 <h4>Schedule</h4>
-    <GameHistoryTable matches={map(x => x.matchStats)(prop(NDX_SEASONS_MATCHES,data.data).matches)} >
-    </GameHistoryTable>
+<RadioButtonGroup
+  legendText="Schedule Type"
+  name="selectedSchedule"
+  bind:selected={selectedSchedule}
+>
+  {#each schedules as value (value)}
+    <RadioButton labelText={value} {value} />
+  {/each}
+</RadioButtonGroup>
+    {#if selectedSchedule === schedules[0]}
+        <GameHistoryTable matches={map(x => x.matchStats)(prop(NDX_SEASONS_MATCHES,data.data).matches)} />
+    {:else}
+        <GameHistoryTable matches={map(x => x.matchStats)(prop(NDX_FINALS_MATCHES,data.data).matches)} />
+    {/if}
 </div>
 </div>
 {/if}
