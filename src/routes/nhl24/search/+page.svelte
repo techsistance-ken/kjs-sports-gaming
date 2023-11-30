@@ -13,7 +13,7 @@
 		Tabs
      } from "carbon-components-svelte";
      import { goto } from '$app/navigation';
-
+     import {searches} from '../../../store/recentsearches.js';
 	import { always, update } from "ramda";
 
 
@@ -25,7 +25,7 @@
     let clubResults = [];
     let platform="common-gen5"
     let searchError = "";
-    let tabSelected=0;
+    let tabSelected=1;
 
 
 
@@ -45,6 +45,7 @@
                 progressBarHidden = true;
                 searchDisabled = false;
                 searchError = "";
+                tabSelected = 1;
                 break;
             case "loading":
                 progressBarHidden = false;
@@ -67,6 +68,7 @@
 
     }
 
+    console.log(searches)
     const gotoClub = row => 
         goto(`/nhl24/search/${row.platform}/${row.id}`, { replaceState: false}) 
     const executeSearch = () => {
@@ -76,6 +78,7 @@
             searchError = "Club name must be at least 3 characters."
             return; 
         }
+        searches.newSearch(searchTerm);
         updatePageStatus("loading");
 
         fetch("https://eashl-ohxio2uirq-uc.a.run.app/search",{
@@ -190,7 +193,13 @@
          </div>
       {/if} 
         </TabContent>
-      <TabContent>Coming Soon. . .</TabContent>
+      <TabContent>
+        <div style="display: flex; flex-direction: column;">
+          {#each $searches as searches}
+             <Button kind="ghost">{searches}</Button>
+          {/each}
+        </div>
+      </TabContent>
       <TabContent>Coming Soon. . .</TabContent>
     </svelte:fragment>
   </Tabs>

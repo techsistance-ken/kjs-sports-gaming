@@ -4,6 +4,7 @@
     import SinglStat from '../../../../../../src/components/stats/singlStat.svelte';
 	import GameHistoryTable from '../../../../../../src/components/GameHistoryTable.svelte';
 	import { collection, db, doc, getDoc } from '../../../../../firebase.js';
+
         const loadClubFromDb = (platform,clubId) => {
             getDoc(doc(collection(db,`/nhl24/ps5/clubs`),clubId))
               .then(x => alert(x.get("name")))
