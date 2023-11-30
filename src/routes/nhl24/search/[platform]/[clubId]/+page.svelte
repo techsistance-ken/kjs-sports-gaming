@@ -4,6 +4,8 @@
     import SinglStat from '../../../../../../src/components/stats/singlStat.svelte';
 	import GameHistoryTable from '../../../../../../src/components/GameHistoryTable.svelte';
 	import { collection, db, doc, getDoc } from '../../../../../firebase.js';
+    import Star from "carbon-icons-svelte/lib/Star.svelte";
+	import ClubFavorite from '../../../../../components/ClubFavorite.svelte';
 
         const loadClubFromDb = (platform,clubId) => {
             getDoc(doc(collection(db,`/nhl24/ps5/clubs`),clubId))
@@ -45,18 +47,24 @@
    <h2>No Data</h2> 
 {:else}
 
+<!-- {JSON.stringify(prop(NDX_CLUB_INFO,data.data))} -->
+
 <Breadcrumb noTrailingSlash>
     <BreadcrumbItem href="/nhl24">Home</BreadcrumbItem>
     <BreadcrumbItem href="/nhl24/search">Search</BreadcrumbItem>
     <BreadcrumbItem>{prop(NDX_CLUB_INFO,data.data).info.name}</BreadcrumbItem>
 </Breadcrumb>
-<h2>Load From DB</h2>
+<!-- <h2>Load From DB</h2>
 <Button on:click={() => loadClubFromDb(data.platform,data.clubId)}>Load From FB</Button>
-<br>
+<br> -->
 <h2>Club Information</h2>
-<div style="margin: 12px 0 18px; 0; display: flex; width: 98%; justify-content: center; aligh-items: center; flex-direction: column;">
+<div style="margin: 12px 0 18px; 0; display: flex; width: 98%; justify-content: center; align-items: center; flex-direction: column;">
     <h3 style="align-self: center;">{prop(NDX_CLUB_INFO,data.data).info.name}</h3>
     <h4 style="align-self: center;">{prop(NDX_CLUB_STATS,data.data).stats.record}</h4>
+    <div>
+        <ClubFavorite clubName={prop(NDX_CLUB_INFO,data.data).info.name} clubId={prop(NDX_CLUB_INFO,data.data).id} platform={prop(NDX_CLUB_INFO,data.data).platform}/>
+    </div>
+
 </div>
 <!-- {JSON.stringify(data.data)} -->
 

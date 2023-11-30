@@ -1,6 +1,6 @@
 import { writable } from "svelte/store";
 import { browser } from "$app/environment";
-import { prepend, remove } from "ramda";
+import { compose, prepend, remove, uniq } from "ramda";
 
 function createSearches() {
 	const { subscribe, set, update } = writable([]);
@@ -19,7 +19,10 @@ function createSearches() {
 		newSearch: (/** @type {String} */ newTerm) => update((cur) => {
             const newArr = prepend(newTerm,cur)
             // always max the recent searches to 20
-            const c = remove(5,1000,newArr);
+            const c = compose(
+                remove(20,1000),
+                a => uniq(a)
+            )(newArr);
             if(browser) localStorage.setItem("searches",JSON.stringify(c));
             return c;
         }),

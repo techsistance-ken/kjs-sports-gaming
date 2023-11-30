@@ -14,6 +14,7 @@
      } from "carbon-components-svelte";
      import { goto } from '$app/navigation';
      import {searches} from '../../../store/recentsearches.js';
+     import {favorites} from '../../../store/favoriteclubs.js';
 	import { always, update } from "ramda";
 
 
@@ -68,7 +69,6 @@
 
     }
 
-    console.log(searches)
     const gotoClub = row => 
         goto(`/nhl24/search/${row.platform}/${row.id}`, { replaceState: false}) 
     const executeSearch = () => {
@@ -196,11 +196,17 @@
       <TabContent>
         <div style="display: flex; flex-direction: column;">
           {#each $searches as searches}
-             <Button kind="ghost">{searches}</Button>
+             <Button kind="ghost" on:click={() => {searchTerm=searches; executeSearch();}}>{searches}</Button>
           {/each}
         </div>
       </TabContent>
-      <TabContent>Coming Soon. . .</TabContent>
+      <TabContent>
+        <div style="display: flex; flex-direction: column;">
+            {#each $favorites as fav}
+               <Button kind="ghost" on:click={() => gotoClub({"id":fav.clubId,"platform":fav.platform})}>{fav.clubName}</Button>
+            {/each}
+          </div>
+      </TabContent>
     </svelte:fragment>
   </Tabs>
 
