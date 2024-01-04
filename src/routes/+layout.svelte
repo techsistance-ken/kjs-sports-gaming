@@ -7,6 +7,7 @@
     import { signOut } from 'firebase/auth';
     import { auth } from '../firebase';
     import { goto } from '$app/navigation';
+    import { myclub } from '../store/myclub.js';
 
 
     let theme = "white"; // "white" | "g10" | "g80" | "g90" | "g100"
@@ -32,15 +33,20 @@
 <SideNav bind:isOpen={isSideNavOpen}>
   <SideNavItems>
     <SideNavMenu text="NHL24">
+      <SideNavMenuItem href="/nhl24" text="NHL24 Home" />
       <SideNavMenuItem href="/nhl24/search" text="Search For Clubs" />
-      <SideNavMenu text="CLUBS">
+      {#if $myclub != null}
+        <SideNavMenuItem href="/nhl24/clubs/{$myclub.platform}/{$myclub.clubId}" text={$myclub.clubName} />
+      {/if}
+      <SideNavMenuItem href="/nhl24/favorites" text="Favorite Clubs" />
+      <!-- <SideNavMenu text="CLUBS">
         <SideNavMenuItem href="/nhl24/clubs/ps5/1620" text="Respect the Indian" />
       </SideNavMenu>
       <SideNavMenu text="PLAYERS">
         <SideNavMenuItem href="/nhl24/player-stats/ps5/kjdadada" text="kjdadada" />
         <SideNavMenuItem href="/nhl24/player-stats/ps5/ritti34" text="ritti34" />
         <SideNavMenuItem href="/nhl24/player-stats/ps5/pj26pj" text="pj26pj" />
-      </SideNavMenu>
+      </SideNavMenu> -->
     </SideNavMenu>
   </SideNavItems>
 </SideNav>

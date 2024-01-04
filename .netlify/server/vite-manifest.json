@@ -5,6 +5,7 @@
     "isEntry": true,
     "imports": [
       "_index.js",
+      "_ssr.js",
       "_index2.js"
     ],
     "dynamicImports": [
@@ -18,10 +19,12 @@
     "imports": [
       "_index.js",
       "_firebase.js",
-      "_index2.js"
+      "_Close.js",
+      "_index2.js",
+      "_ChevronDown.js"
     ],
     "css": [
-      "_app/immutable/assets/_layout-d9c6e579.css"
+      "_app/immutable/assets/_layout-9647eb9b.css"
     ]
   },
   "src/routes/+layout.js": {
@@ -45,24 +48,114 @@
       "_index.js"
     ]
   },
-  "src/routes/nhl23/player-stats/[platform]/[playerId]/+page.svelte": {
-    "file": "entries/pages/nhl23/player-stats/_platform_/_playerId_/_page.svelte.js",
-    "src": "src/routes/nhl23/player-stats/[platform]/[playerId]/+page.svelte",
+  "src/routes/nhl24/+page.svelte": {
+    "file": "entries/pages/nhl24/_page.svelte.js",
+    "src": "src/routes/nhl24/+page.svelte",
     "isEntry": true,
     "imports": [
       "_index.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page-e2ace3b7.css"
     ]
   },
-  "src/routes/nhl23/player-stats/[platform]/[playerId]/+page.js": {
-    "file": "entries/pages/nhl23/player-stats/_platform_/_playerId_/_page.js",
-    "src": "src/routes/nhl23/player-stats/[platform]/[playerId]/+page.js",
+  "src/routes/nhl24/+page.js": {
+    "file": "entries/pages/nhl24/_page.js",
+    "src": "src/routes/nhl24/+page.js",
+    "isEntry": true
+  },
+  "src/routes/nhl24/clubs/[platform]/[clubId]/+page.svelte": {
+    "file": "entries/pages/nhl24/clubs/_platform_/_clubId_/_page.svelte.js",
+    "src": "src/routes/nhl24/clubs/[platform]/[clubId]/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index.js",
+      "_StructuredListRow.js"
+    ]
+  },
+  "src/routes/nhl24/clubs/[platform]/[clubId]/+page.js": {
+    "file": "entries/pages/nhl24/clubs/_platform_/_clubId_/_page.js",
+    "src": "src/routes/nhl24/clubs/[platform]/[clubId]/+page.js",
     "isEntry": true,
     "imports": [
       "_firebase.js"
     ]
   },
+  "src/routes/nhl24/player-stats/[platform]/[playerId]/+page.svelte": {
+    "file": "entries/pages/nhl24/player-stats/_platform_/_playerId_/_page.svelte.js",
+    "src": "src/routes/nhl24/player-stats/[platform]/[playerId]/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index.js",
+      "_singlStat.js",
+      "_ChevronDown.js",
+      "_StructuredListRow.js",
+      "_Close.js",
+      "_Button.js",
+      "_ssr.js",
+      "_index2.js"
+    ]
+  },
+  "src/routes/nhl24/player-stats/[platform]/[playerId]/+page.js": {
+    "file": "entries/pages/nhl24/player-stats/_platform_/_playerId_/_page.js",
+    "src": "src/routes/nhl24/player-stats/[platform]/[playerId]/+page.js",
+    "isEntry": true,
+    "imports": [
+      "_firebase.js"
+    ]
+  },
+  "src/routes/nhl24/search/+page.svelte": {
+    "file": "entries/pages/nhl24/search/_page.svelte.js",
+    "src": "src/routes/nhl24/search/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index.js",
+      "_index2.js",
+      "_favoriteclubs.js",
+      "_Close.js",
+      "_Button.js",
+      "_ChevronDown.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page-1d2f4cac.css"
+    ]
+  },
+  "src/routes/nhl24/search/+page.js": {
+    "file": "entries/pages/nhl24/search/_page.js",
+    "src": "src/routes/nhl24/search/+page.js",
+    "isEntry": true
+  },
+  "src/routes/nhl24/search/[platform]/[clubId]/+page.svelte": {
+    "file": "entries/pages/nhl24/search/_platform_/_clubId_/_page.svelte.js",
+    "src": "src/routes/nhl24/search/[platform]/[clubId]/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index.js",
+      "_singlStat.js",
+      "_StructuredListRow.js",
+      "_firebase.js",
+      "_favoriteclubs.js",
+      "_Button.js",
+      "_Close.js",
+      "_index2.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page-9e5ceb64.css"
+    ]
+  },
+  "src/routes/nhl24/search/[platform]/[clubId]/+page.js": {
+    "file": "entries/pages/nhl24/search/_platform_/_clubId_/_page.js",
+    "src": "src/routes/nhl24/search/[platform]/[clubId]/+page.js",
+    "isEntry": true
+  },
   "_index.js": {
     "file": "chunks/index.js"
+  },
+  "_ssr.js": {
+    "file": "chunks/ssr.js",
+    "imports": [
+      "_index.js"
+    ]
   },
   "_index2.js": {
     "file": "chunks/index2.js",
@@ -72,6 +165,44 @@
   },
   "_firebase.js": {
     "file": "chunks/firebase.js"
+  },
+  "_Close.js": {
+    "file": "chunks/Close.js",
+    "imports": [
+      "_index.js"
+    ]
+  },
+  "_ChevronDown.js": {
+    "file": "chunks/ChevronDown.js",
+    "imports": [
+      "_index.js"
+    ]
+  },
+  "_StructuredListRow.js": {
+    "file": "chunks/StructuredListRow.js",
+    "imports": [
+      "_index.js",
+      "_index2.js"
+    ]
+  },
+  "_singlStat.js": {
+    "file": "chunks/singlStat.js",
+    "imports": [
+      "_index.js"
+    ]
+  },
+  "_Button.js": {
+    "file": "chunks/Button.js",
+    "imports": [
+      "_index.js"
+    ]
+  },
+  "_favoriteclubs.js": {
+    "file": "chunks/favoriteclubs.js",
+    "imports": [
+      "_index.js",
+      "_index2.js"
+    ]
   },
   ".svelte-kit/build/hooks.js": {
     "file": "chunks/hooks.js",

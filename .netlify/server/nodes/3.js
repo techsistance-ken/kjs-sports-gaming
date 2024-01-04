@@ -1,9 +1,9 @@
-import * as shared from '../entries/pages/nhl24/player-stats/_platform_/_playerId_/_page.js';
+import * as shared from '../entries/pages/nhl24/_page.js';
 
 export const index = 3;
-export const component = async () => (await import('../entries/pages/nhl23/player-stats/_platform_/_playerId_/_page.svelte.js')).default;
-export const file = '_app/immutable/components/pages/nhl24/player-stats/_platform_/_playerId_/_page.svelte-fa1e7583.js';
+export const component = async () => (await import('../entries/pages/nhl24/_page.svelte.js')).default;
+export const file = '_app/immutable/components/pages/nhl24/_page.svelte-c9bb86ae.js';
 export { shared };
-export const imports = ["_app/immutable/components/pages/nhl24/player-stats/_platform_/_playerId_/_page.svelte-fa1e7583.js","_app/immutable/chunks/index-8565d05b.js","_app/immutable/modules/pages/nhl23/player-stats/_platform_/_playerId_/_page.js-7058e4dc.js","_app/immutable/chunks/firebase-89498c27.js","_app/immutable/chunks/_page-bc080df4.js"];
-export const stylesheets = [];
+export const imports = ["_app/immutable/components/pages/nhl24/_page.svelte-c9bb86ae.js","_app/immutable/chunks/index-e9bb2f08.js","_app/immutable/chunks/navigation-b12b0408.js","_app/immutable/chunks/singletons-4097e695.js","_app/immutable/chunks/index-c473bdd0.js","_app/immutable/modules/pages/nhl24/_page.js-0bceff0a.js"];
+export const stylesheets = ["_app/immutable/assets/_page-9a5cc696.css"];
 export const fonts = [];
