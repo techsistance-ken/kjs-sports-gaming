@@ -6,7 +6,7 @@ export const handler = init({
 	assets: new Set(["favicon.png"]),
 	mimeTypes: {".png":"image/png"},
 	_: {
-		entry: {"file":"_app/immutable/start-a91e3cd3.js","imports":["_app/immutable/start-a91e3cd3.js","_app/immutable/chunks/index-e9bb2f08.js","_app/immutable/chunks/singletons-4097e695.js","_app/immutable/chunks/index-c473bdd0.js"],"stylesheets":[],"fonts":[]},
+		entry: {"file":"_app/immutable/start-3ca7f57d.js","imports":["_app/immutable/start-3ca7f57d.js","_app/immutable/chunks/index-7696a96e.js","_app/immutable/chunks/singletons-cbc4f811.js","_app/immutable/chunks/index-09f2b42b.js"],"stylesheets":[],"fonts":[]},
 		nodes: [
 			() => import('../server/nodes/0.js'),
 			() => import('../server/nodes/1.js'),
@@ -15,7 +15,9 @@ export const handler = init({
 			() => import('../server/nodes/4.js'),
 			() => import('../server/nodes/5.js'),
 			() => import('../server/nodes/6.js'),
-			() => import('../server/nodes/7.js')
+			() => import('../server/nodes/7.js'),
+			() => import('../server/nodes/8.js'),
+			() => import('../server/nodes/9.js')
 		],
 		routes: [
 			{
@@ -28,12 +30,21 @@ export const handler = init({
 				endpoint: null
 			},
 			{
+				id: "/irlmlb24/mlbingo",
+				pattern: /^\/irlmlb24\/mlbingo\/?$/,
+				names: [],
+				types: [],
+				optional: [],
+				page: { layouts: [0], errors: [1], leaf: 3 },
+				endpoint: null
+			},
+			{
 				id: "/nhl24",
 				pattern: /^\/nhl24\/?$/,
 				names: [],
 				types: [],
 				optional: [],
-				page: { layouts: [0], errors: [1], leaf: 3 },
+				page: { layouts: [0], errors: [1], leaf: 4 },
 				endpoint: null
 			},
 			{
@@ -42,7 +53,16 @@ export const handler = init({
 				names: ["platform","clubId"],
 				types: [null,null],
 				optional: [false,false],
-				page: { layouts: [0], errors: [1], leaf: 4 },
+				page: { layouts: [0], errors: [1], leaf: 5 },
+				endpoint: null
+			},
+			{
+				id: "/nhl24/favorites",
+				pattern: /^\/nhl24\/favorites\/?$/,
+				names: [],
+				types: [],
+				optional: [],
+				page: { layouts: [0], errors: [1], leaf: 6 },
 				endpoint: null
 			},
 			{
@@ -51,7 +71,7 @@ export const handler = init({
 				names: ["platform","playerId"],
 				types: [null,null],
 				optional: [false,false],
-				page: { layouts: [0], errors: [1], leaf: 5 },
+				page: { layouts: [0], errors: [1], leaf: 7 },
 				endpoint: null
 			},
 			{
@@ -60,7 +80,7 @@ export const handler = init({
 				names: [],
 				types: [],
 				optional: [],
-				page: { layouts: [0], errors: [1], leaf: 6 },
+				page: { layouts: [0], errors: [1], leaf: 8 },
 				endpoint: null
 			},
 			{
@@ -69,7 +89,7 @@ export const handler = init({
 				names: ["platform","clubId"],
 				types: [null,null],
 				optional: [false,false],
-				page: { layouts: [0], errors: [1], leaf: 7 },
+				page: { layouts: [0], errors: [1], leaf: 9 },
 				endpoint: null
 			}
 		],

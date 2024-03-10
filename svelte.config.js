@@ -10,16 +10,10 @@ const config = {
 	kit: {
 		adapter: adapter(),
 	},
-	extensions: ['.svelte', '.md'],
+	extensions: ['.svelte'],
 
 	preprocess: [
-		sveltePreprocess(),
-		mdsvex({
-			extensions: ['.md'],
-			layout: {
-				blog: 'src/routes/blog/post.svelte'
-			}
-		})
+		sveltePreprocess()
 	]
 };
 

@@ -1,6 +1,7 @@
 import { c as create_ssr_component, d as compute_rest_props, e as spread, f as escape_attribute_value, g as escape_object, h as escape, j as add_attribute, v as validate_component, m as missing_component, b as subscribe, k as add_classes, l as createEventDispatcher, o as set_store_value, p as compute_slots } from "../../chunks/index.js";
 import "firebase/auth";
 import "../../chunks/firebase.js";
+import { m as myclub } from "../../chunks/myclub.js";
 import { C as Close } from "../../chunks/Close.js";
 import { w as writable } from "../../chunks/index2.js";
 import { C as ChevronDown } from "../../chunks/ChevronDown.js";
@@ -32,7 +33,7 @@ const Menu = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       escape_object($$restProps)
     ],
     {}
-  )}>${title ? `<title>${escape(title)}</title>` : ``}<path d="${"M4 6H28V8H4zM4 24H28V26H4zM4 12H28V14H4zM4 18H28V20H4z"}"></path></svg>`;
+  )}>${title ? `<title>${escape(title)}</title>` : ``}<path d="M4 6H28V8H4zM4 24H28V26H4zM4 12H28V14H4zM4 18H28V20H4z"></path></svg>`;
 });
 const Menu$1 = Menu;
 const shouldRenderHamburgerMenu = writable(false);
@@ -238,7 +239,7 @@ const SideNavMenu = create_ssr_component(($$result, $$props, $$bindings, slots) 
         `}</div>` : ``}
     <span${add_classes("bx--side-nav__submenu-title".trim())}>${escape(text)}</span>
     <div${add_classes("bx--side-nav__icon bx--side-nav__icon--small bx--side-nav__submenu-chevron".trim())}>${validate_component(ChevronDown, "ChevronDown").$$render($$result, {}, {}, {})}</div></button>
-  <ul role="${"menu"}"${add_attribute("style", expanded && "max-height: none", 0)}${add_classes("bx--side-nav__menu".trim())}>${slots.default ? slots.default({}) : ``}</ul></li>`;
+  <ul role="menu"${add_attribute("style", expanded && "max-height: none", 0)}${add_classes("bx--side-nav__menu".trim())}>${slots.default ? slots.default({}) : ``}</ul></li>`;
 });
 const SideNavMenu$1 = SideNavMenu;
 const SideNavMenuItem = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -318,6 +319,8 @@ const SkipToContent = create_ssr_component(($$result, $$props, $$bindings, slots
 const SkipToContent$1 = SkipToContent;
 const white = "";
 const Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  let $myclub, $$unsubscribe_myclub;
+  $$unsubscribe_myclub = subscribe(myclub, (value) => $myclub = value);
   let isSideNavOpen = false;
   let $$settled;
   let $$rendered;
@@ -358,9 +361,23 @@ ${validate_component(SideNav$1, "SideNav").$$render(
         default: () => {
           return `${validate_component(SideNavItems$1, "SideNavItems").$$render($$result, {}, {}, {
             default: () => {
-              return `${validate_component(SideNavMenu$1, "SideNavMenu").$$render($$result, { text: "NHL24" }, {}, {
+              return `${validate_component(SideNavMenu$1, "SideNavMenu").$$render($$result, { text: "IRL MLB24" }, {}, {
                 default: () => {
                   return `${validate_component(SideNavMenuItem$1, "SideNavMenuItem").$$render(
+                    $$result,
+                    {
+                      href: "/irlmlb24/mlbingo",
+                      text: "MLBINGO Home"
+                    },
+                    {},
+                    {}
+                  )}`;
+                }
+              })}
+    ${validate_component(SideNavMenu$1, "SideNavMenu").$$render($$result, { text: "EA NHL24" }, {}, {
+                default: () => {
+                  return `${validate_component(SideNavMenuItem$1, "SideNavMenuItem").$$render($$result, { href: "/nhl24", text: "EA NHL24 Home" }, {}, {})}
+      ${validate_component(SideNavMenuItem$1, "SideNavMenuItem").$$render(
                     $$result,
                     {
                       href: "/nhl24/search",
@@ -369,50 +386,25 @@ ${validate_component(SideNav$1, "SideNav").$$render(
                     {},
                     {}
                   )}
-      ${validate_component(SideNavMenu$1, "SideNavMenu").$$render($$result, { text: "CLUBS" }, {}, {
-                    default: () => {
-                      return `${validate_component(SideNavMenuItem$1, "SideNavMenuItem").$$render(
-                        $$result,
-                        {
-                          href: "/nhl24/clubs/ps5/1620",
-                          text: "Respect the Indian"
-                        },
-                        {},
-                        {}
-                      )}`;
-                    }
-                  })}
-      ${validate_component(SideNavMenu$1, "SideNavMenu").$$render($$result, { text: "PLAYERS" }, {}, {
-                    default: () => {
-                      return `${validate_component(SideNavMenuItem$1, "SideNavMenuItem").$$render(
-                        $$result,
-                        {
-                          href: "/nhl24/player-stats/ps5/kjdadada",
-                          text: "kjdadada"
-                        },
-                        {},
-                        {}
-                      )}
-        ${validate_component(SideNavMenuItem$1, "SideNavMenuItem").$$render(
-                        $$result,
-                        {
-                          href: "/nhl24/player-stats/ps5/ritti34",
-                          text: "ritti34"
-                        },
-                        {},
-                        {}
-                      )}
-        ${validate_component(SideNavMenuItem$1, "SideNavMenuItem").$$render(
-                        $$result,
-                        {
-                          href: "/nhl24/player-stats/ps5/pj26pj",
-                          text: "pj26pj"
-                        },
-                        {},
-                        {}
-                      )}`;
-                    }
-                  })}`;
+      ${$myclub != null ? `${validate_component(SideNavMenuItem$1, "SideNavMenuItem").$$render(
+                    $$result,
+                    {
+                      href: "/nhl24/clubs/" + $myclub.platform + "/" + $myclub.clubId,
+                      text: $myclub.clubName
+                    },
+                    {},
+                    {}
+                  )}` : ``}
+      ${validate_component(SideNavMenuItem$1, "SideNavMenuItem").$$render(
+                    $$result,
+                    {
+                      href: "/nhl24/favorites",
+                      text: "Favorite Clubs"
+                    },
+                    {},
+                    {}
+                  )}
+      `;
                 }
               })}`;
             }
@@ -429,6 +421,7 @@ ${validate_component(Content$1, "Content").$$render($$result, {}, {}, {
     })}
 `;
   } while (!$$settled);
+  $$unsubscribe_myclub();
   return $$rendered;
 });
 export {

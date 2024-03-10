@@ -19,6 +19,7 @@
     "imports": [
       "_index.js",
       "_firebase.js",
+      "_myclub.js",
       "_Close.js",
       "_index2.js",
       "_ChevronDown.js"
@@ -48,6 +49,18 @@
       "_index.js"
     ]
   },
+  "src/routes/irlmlb24/mlbingo/+page.svelte": {
+    "file": "entries/pages/irlmlb24/mlbingo/_page.svelte.js",
+    "src": "src/routes/irlmlb24/mlbingo/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index.js",
+      "_firebase.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page-b21313a9.css"
+    ]
+  },
   "src/routes/nhl24/+page.svelte": {
     "file": "entries/pages/nhl24/_page.svelte.js",
     "src": "src/routes/nhl24/+page.svelte",
@@ -70,7 +83,10 @@
     "isEntry": true,
     "imports": [
       "_index.js",
-      "_StructuredListRow.js"
+      "_firebase.js",
+      "_Button.js",
+      "_index2.js",
+      "_ChevronDown.js"
     ]
   },
   "src/routes/nhl24/clubs/[platform]/[clubId]/+page.js": {
@@ -81,6 +97,15 @@
       "_firebase.js"
     ]
   },
+  "src/routes/nhl24/favorites/+page.svelte": {
+    "file": "entries/pages/nhl24/favorites/_page.svelte.js",
+    "src": "src/routes/nhl24/favorites/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index.js",
+      "_favoriteclubs.js"
+    ]
+  },
   "src/routes/nhl24/player-stats/[platform]/[playerId]/+page.svelte": {
     "file": "entries/pages/nhl24/player-stats/_platform_/_playerId_/_page.svelte.js",
     "src": "src/routes/nhl24/player-stats/[platform]/[playerId]/+page.svelte",
@@ -88,12 +113,7 @@
     "imports": [
       "_index.js",
       "_singlStat.js",
-      "_ChevronDown.js",
-      "_StructuredListRow.js",
-      "_Close.js",
-      "_Button.js",
-      "_ssr.js",
-      "_index2.js"
+      "_ChevronDown.js"
     ]
   },
   "src/routes/nhl24/player-stats/[platform]/[playerId]/+page.js": {
@@ -112,6 +132,7 @@
       "_index.js",
       "_index2.js",
       "_favoriteclubs.js",
+      "_RadioButtonGroup.js",
       "_Close.js",
       "_Button.js",
       "_ChevronDown.js"
@@ -132,10 +153,11 @@
     "imports": [
       "_index.js",
       "_singlStat.js",
-      "_StructuredListRow.js",
       "_firebase.js",
       "_favoriteclubs.js",
+      "_myclub.js",
       "_Button.js",
+      "_RadioButtonGroup.js",
       "_Close.js",
       "_index2.js"
     ],
@@ -152,10 +174,7 @@
     "file": "chunks/index.js"
   },
   "_ssr.js": {
-    "file": "chunks/ssr.js",
-    "imports": [
-      "_index.js"
-    ]
+    "file": "chunks/ssr.js"
   },
   "_index2.js": {
     "file": "chunks/index2.js",
@@ -165,6 +184,12 @@
   },
   "_firebase.js": {
     "file": "chunks/firebase.js"
+  },
+  "_myclub.js": {
+    "file": "chunks/myclub.js",
+    "imports": [
+      "_index2.js"
+    ]
   },
   "_Close.js": {
     "file": "chunks/Close.js",
@@ -178,19 +203,6 @@
       "_index.js"
     ]
   },
-  "_StructuredListRow.js": {
-    "file": "chunks/StructuredListRow.js",
-    "imports": [
-      "_index.js",
-      "_index2.js"
-    ]
-  },
-  "_singlStat.js": {
-    "file": "chunks/singlStat.js",
-    "imports": [
-      "_index.js"
-    ]
-  },
   "_Button.js": {
     "file": "chunks/Button.js",
     "imports": [
@@ -199,6 +211,22 @@
   },
   "_favoriteclubs.js": {
     "file": "chunks/favoriteclubs.js",
+    "imports": [
+      "_index2.js"
+    ]
+  },
+  "_singlStat.js": {
+    "file": "chunks/singlStat.js",
+    "imports": [
+      "_index.js",
+      "_Close.js",
+      "_Button.js",
+      "_ssr.js",
+      "_index2.js"
+    ]
+  },
+  "_RadioButtonGroup.js": {
+    "file": "chunks/RadioButtonGroup.js",
     "imports": [
       "_index.js",
       "_index2.js"
