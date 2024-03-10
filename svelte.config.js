@@ -1,6 +1,5 @@
 import adapter from "@sveltejs/adapter-netlify";
 /* Other imports here */
-import { mdsvex } from 'mdsvex';
 import sveltePreprocess from 'svelte-preprocess';
 
 
