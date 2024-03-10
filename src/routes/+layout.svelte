@@ -32,8 +32,11 @@
 </Header>
 <SideNav bind:isOpen={isSideNavOpen}>
   <SideNavItems>
-    <SideNavMenu text="NHL24">
-      <SideNavMenuItem href="/nhl24" text="NHL24 Home" />
+    <SideNavMenu text="IRL MLB24">
+      <SideNavMenuItem href="/irlmlb24/mlbingo" text="MLBINGO Home" />
+    </SideNavMenu>
+    <SideNavMenu text="EA NHL24">
+      <SideNavMenuItem href="/nhl24" text="EA NHL24 Home" />
       <SideNavMenuItem href="/nhl24/search" text="Search For Clubs" />
       {#if $myclub != null}
         <SideNavMenuItem href="/nhl24/clubs/{$myclub.platform}/{$myclub.clubId}" text={$myclub.clubName} />
