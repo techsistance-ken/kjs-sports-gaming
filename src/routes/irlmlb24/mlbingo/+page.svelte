@@ -47,8 +47,8 @@ import { collection, db, doc, query, getDocs } from '../../../firebase.js';
 <table style="border: solid 1px green;">
 <tr>
     <th>Team</th>
-    {#each {length: 15} as _, i}
-        <th>{i + 1}</th>
+    {#each {length: 16} as _, i}
+        <th>{i}</th>
     {/each}
 </tr>
 {#each teams as team,i}
@@ -56,11 +56,11 @@ import { collection, db, doc, query, getDocs } from '../../../firebase.js';
     <th> 
         {team.abbr}
     </th>
-    {#each {length: 15} as _, i}
-        {#if getRuns(team.abbr,(i+1).toString(),teamRuns) == 0}
+    {#each {length: 16} as _, i}
+        {#if getRuns(team.abbr,(i).toString(),teamRuns) == 0}
             <td style="background-color: red">x</td>
         {:else}
-            <td style="background-color: green">{getRuns(team.abbr,(i+1).toString(),teamRuns)}</td>
+            <td style="background-color: green">{getRuns(team.abbr,(i).toString(),teamRuns)}</td>
         {/if}
 
     {/each}
