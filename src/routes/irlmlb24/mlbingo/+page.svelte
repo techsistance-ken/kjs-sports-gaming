@@ -8,17 +8,18 @@ import { collection, db, doc, query, getDocs } from '../../../firebase.js';
     let documentSnapshots = null;
     let teams = [];
     let teamRuns = {};
+    const season = "regularseason";
 
     onMount(async () => {
         console.log("om")
-        const teamsCollection = collection(db,`/irl_mlb24/preseason/teams`)
+        const teamsCollection = collection(db,`/irl_mlb24/${season}/teams`)
         const teamCollectionQuery = await query(teamsCollection);
         const teamsSnapshot = await getDocs(teamCollectionQuery);
         teams = [];
         teamsSnapshot.forEach(x => teams.push(x.data()))
 
         forEach(async team => {
-            const runsCollection = collection(db,`/irl_mlb24/preseason/teams/${team.abbr}/teamEvents`)
+            const runsCollection = collection(db,`/irl_mlb24/${season}/teams/${team.abbr}/teamEvents`)
             const runsCollectionQuery = await query(runsCollection);
             const runsSnapshot = await getDocs(runsCollectionQuery)
 
@@ -46,7 +47,7 @@ import { collection, db, doc, query, getDocs } from '../../../firebase.js';
 
 <table style="border: solid 1px green;">
 <tr>
-    <th>Team</th>
+    <th colspan=2>Team</th>
     {#each {length: 16} as _, i}
         <th>{i}</th>
     {/each}
@@ -55,6 +56,9 @@ import { collection, db, doc, query, getDocs } from '../../../firebase.js';
 <tr>
     <th> 
         {team.abbr}
+    </th>
+    <th> 
+        {team.owner}
     </th>
     {#each {length: 16} as _, i}
         {#if getRuns(team.abbr,(i).toString(),teamRuns) == 0}
