@@ -149,7 +149,7 @@ import { keys, prop, forEach, assoc, assocPath, length, defaultTo, range, groupB
     </table>
     <br><br>
 
-    <h4>15 Runs Pot (Split 2,500 Points)</h4>
+    <h4>15 Runs Pot (Split 2,500)</h4>
     <table>
     <tr><th>Team</th><th>Shares</th><th>Total</th></tr>
     {#each keys(groupPot) as team}
