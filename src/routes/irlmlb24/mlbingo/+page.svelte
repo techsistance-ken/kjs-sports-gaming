@@ -1,6 +1,6 @@
 <script>
 import { onMount } from 'svelte';
-import { collection, db, doc, query, getDocs } from '../../../firebase.js';
+import { Timestamp, collection, db, getDoc, doc, query, getDocs } from '../../../firebase.js';
 import { keys, prop, forEach, assoc, assocPath, length, defaultTo, range, groupBy, identity} from 'ramda';
 
     let documentSnapshots = null;
@@ -38,6 +38,7 @@ import { keys, prop, forEach, assoc, assocPath, length, defaultTo, range, groupB
 
     let groupPot = {};
 
+    let lastUpdate = null
     onMount(async () => {
         const teamsCollection = collection(db,`/irl_mlb24/${season}/teams`)
         const teamCollectionQuery = await query(teamsCollection);
@@ -49,6 +50,16 @@ import { keys, prop, forEach, assoc, assocPath, length, defaultTo, range, groupB
             const runsCollection = collection(db,`/irl_mlb24/${season}/teams/${team.abbr}/teamEvents`)
             const runsCollectionQuery = await query(runsCollection);
             const runsSnapshot = await getDocs(runsCollectionQuery)
+
+            const docRef = doc(db, "irl_mlb24", season);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                console.log("Document data:", docSnap.data());
+                lastUpdate = docSnap.data();
+            } else {
+                console.log("No such document!");
+            }
 
             teamRuns = assoc(team.abbr, {runs: []})(teamRuns)
             runsSnapshot.forEach(x => {
@@ -91,6 +102,8 @@ import { keys, prop, forEach, assoc, assocPath, length, defaultTo, range, groupB
 </script>
 <div class="mymobile">
     <h2>MLB Bingo 15</h2>
+    <p>Last Update {lastUpdate ? `${new Date(lastUpdate.lastUpdate.seconds*1000).toLocaleDateString()} ${new Date(lastUpdate.lastUpdate.seconds*1000).toLocaleTimeString()}` : ""}</p>
+    
 
     <table style="border: solid 1px green;">
     <tr>

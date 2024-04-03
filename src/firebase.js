@@ -3,6 +3,7 @@ import { getApp, initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
 import { 
+  Timestamp,
   getCountFromServer,
   doc, query, getDoc, getDocs, getFirestore, collection, addDoc } from "firebase/firestore"; 
 
@@ -30,6 +31,7 @@ let db = getFirestore(app);
 export {
     auth,
     doc,
+    Timestamp,
     getDoc,
     getDocs,
     collection,
