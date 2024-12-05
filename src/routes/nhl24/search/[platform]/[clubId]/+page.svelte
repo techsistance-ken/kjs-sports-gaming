@@ -27,7 +27,7 @@
         const getdyncss = index => index % 2 == 0 ? `--row-bg-color:#F3FFFF;` : `--row-bg-color:#FFFFF3;`
 
         const schedules = ["Season Matches", "Finals Matches"];;
-        let selectedSchedule = schedules[1];
+        let selectedSchedule = schedules[0];
 
 
         const NDX_CLUB_STATS = "0";
