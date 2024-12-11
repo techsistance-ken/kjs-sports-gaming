@@ -144,6 +144,14 @@
       margin-bottom: 1rem;
       color: #333;
     }
+
+    .green-border {
+        border: 2px solid green;
+    }
+
+    .red-border {
+        border: 2px solid red;
+    }
   </style>
 
   <!-- <BetInput /> -->
@@ -156,7 +164,9 @@
         <OddBands chartType="byTotalNet" wagers={wagers} />
       <h2>Total Wagers: {totalWagers}</h2>
       {#each wagers as wager}
-        <div class="card">
+            <div
+            class="card {wager.result === 'WIN' ? 'green-border' : wager.result === 'LOSS' ? 'red-border' : 'default-border'}"
+        >
             <div class="date">{formatDate(new Date(wager.wagerDate))}</div>
             <div class="description">{wager.bet.description} ({wager.totalOdds})</div>
             <div class="card-content">

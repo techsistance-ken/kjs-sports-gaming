@@ -1,5 +1,8 @@
 <script>
     import { onMount } from 'svelte';
+	import AutoComplete from './AutoComplete.svelte';
+	import Dropdown from './Dropdown.svelte';
+	// import NflInput from './NFLInput.svelte';
 
     // Bet types and their corresponding forms
     const betTypes = [
@@ -13,6 +16,29 @@
     ];
 
     let selectedBetType = betTypes[0]; // Default selection
+
+    let sports = [
+        "FOOTBALL",
+        "BASEBALL",
+        "BASKETBALL",
+        "HOCKEY",
+        "SOCCER"
+    ]
+
+    let leagues = {
+        "FOOTBALL": [
+            "NFL",
+            "NCAAF"
+        ]
+    }
+    let selectedSport = "FOOTBALL"
+    function handleSelect(event) {
+    // alert(`You selected: ${event.detail.value}`);
+  }
+
+  function handleAdd(event) {
+    // alert(`You added: ${event.detail.item}`);
+  }
 </script>
 
 <style>
@@ -24,7 +50,12 @@
         background-color: #f9f9f9;
     }
 </style>
-
+<div>
+    <label for="sport">Sport: </label>
+    <Dropdown items={sports}   on:add={handleAdd} 
+      bind:selectedValue={selectedSport} on:select={handleSelect} />
+    <p>Selected fruit: {selectedSport}</p>
+</div>
 <div>
     <label for="betType">Select Bet Type:</label>
     <select id="betType" bind:value={selectedBetType}>
