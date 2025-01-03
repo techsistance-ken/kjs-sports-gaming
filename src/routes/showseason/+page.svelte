@@ -23,8 +23,11 @@
         await scheduleStore.updateDocument(id, { player });
     };
     const updateScore = async (id, ourscore, oppscore) => {
-      await scheduleStore.updateDocument(id, { ourscore, oppscore });
-    };
+    await scheduleStore.updateDocument(id, { ourscore, oppscore });
+  };
+
+  const scoreOptions = Array.from({ length: 51 }, (_, i) => i); // Generates numbers from 0 to 50
+
   </script>
   
   <main>
@@ -42,22 +45,25 @@
     <p>
         <button on:click={() => {showSchedule = !showSchedule}}>Hide Schedule</button>
     </p>
+
+    <div class="table-container">
+
       <table>
         <thead>
           <tr>
+            <th>#</th>
             <th>Opponent</th>
-            <th>Our Score</th>
-            <th>Opp Score</th>
-            <th>Actions</th>
+            <th>Player</th>
+            <th>Phi</th>
+            <th>Opp</th>
           </tr>
         </thead>
         <tbody>
-          {#each schedule as game}
+          {#each schedule as game, gameNum}
             <tr>
-              <td>{game.homeAway} {game.opponent}</td>
-              <td>{game.ourscore ?? 0}</td> <!-- Default to 0 if undefined or null -->
-              <td>{game.oppscore ?? 0}</td> <!-- Default to 0 if undefined or null -->
-              <td>
+              <td data-label="Game Number">{gameNum+1}</td>
+              <td data-label="Opponent">{game.homeAway} {game.opponent}</td>
+              <td data-label="Player">
                 <!-- Dropdown to select player -->
                 <select
                   on:change={(e) => updatePlayer(game.id, e.target.value)}
@@ -68,23 +74,117 @@
                   <option value="Ken" selected={game.player === "Ken"}>Ken</option>
                 </select>
               </td>
-              <td>
-                <button on:click={() => updateScore(game.id, (game.ourscore ?? 0) - 1, game.oppscore ?? 0)} disabled={(game.ourscore ?? 0) <= 0}>-</button>
-                {game.ourscore ?? 0}
-                <button on:click={() => updateScore(game.id, (game.ourscore ?? 0) + 1, game.oppscore ?? 0)}>+</button>
+              <td data-label="Our Score">
+                <select
+                  on:change={(e) => updateScore(game.id, parseInt(e.target.value), game.oppscore ?? 0)}
+                  bind:value={game.ourscore}
+                >
+                  {#each scoreOptions as score}
+                    <option value={score}>{score}</option>
+                  {/each}
+                </select>
               </td>
-              <td>
-                <button on:click={() => updateScore(game.id, game.ourscore ?? 0, (game.oppscore ?? 0) - 1)} disabled={(game.oppscore ?? 0) <= 0}>-</button>
-                {game.oppscore ?? 0}
-                <button on:click={() => updateScore(game.id, game.ourscore ?? 0, (game.oppscore ?? 0) + 1)}>+</button>
+              <td data-label="{game.opponent} Score">
+                <select
+                  on:change={(e) => updateScore(game.id, game.ourscore ?? 0, parseInt(e.target.value))}
+                  bind:value={game.oppscore}
+                >
+                  {#each scoreOptions as score}
+                    <option value={score}>{score}</option>
+                  {/each}
+                </select>
               </td>
           {/each}
         </tbody>
       </table>
+      </div>
     {:else if showSchedule == false}
       <button on:click={() => {showSchedule = !showSchedule}}>Show Schedule</button>
     {:else}
       <p>Loading schedule...</p>
     {/if}
   </main>
+ 
+  <style>
+    /* Base table styling */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+    }
   
+    table, th, td {
+      border: 1px solid black;
+    }
+  
+    th, td {
+      padding: 8px;
+      text-align: center;
+    }
+  
+    th {
+      background-color: #f2f2f2;
+    }
+  
+    /* Horizontal scrolling for small screens */
+    .table-container {
+      overflow-x: auto;
+    }
+  
+    /* Responsive styles for small screens */
+    @media (max-width: 768px) {
+      table {
+        display: block;
+        width: 100%;
+      }
+  
+      .table-container {
+        margin: 0 -16px; /* Adjust for padding or margin */
+      }
+  
+      thead {
+        display: none; /* Hide table headers */
+      }
+  
+      tbody tr {
+      display: block;
+      width: 100%; /* Make each card take up full width */
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for better card styling */
+      background-color: white; /* Optional background for contrast */
+    }
+  
+      tbody td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px;
+        text-align: left;
+        border: none;
+        border-bottom: 1px solid #eee;
+      }
+  
+      tbody td:last-child {
+        border-bottom: none;
+      }
+  
+      tbody td:before {
+        content: attr(data-label);
+        font-weight: bold;
+        flex-shrink: 0;
+        margin-right: 8px;
+        text-transform: uppercase;
+        font-size: 12px;
+        color: #555;
+      }
+
+          /* Ensure no horizontal scrolling for cards */
+    tbody tr {
+      margin: 0 auto;
+      padding: 0;
+    }
+    }
+  </style> 
