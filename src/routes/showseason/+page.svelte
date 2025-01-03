@@ -30,12 +30,14 @@
   <main>
     <h1>Schedule</h1>
     <p>Record: {wins} - {losses}</p> <!-- Display record -->
-    <h2>Player Stats</h2>
-    <ul>
-      {#each Object.entries(playerStats) as [player, stats]}
-        <li>{player}: {stats.wins} - {stats.losses}</li>
-      {/each}
-    </ul>
+    {#if playerStats}
+        <h2>Player Stats</h2>
+        <ul>
+        {#each Object.entries(playerStats) as [player, stats]}
+            <li>{player}: {stats.wins} - {stats.losses}</li>
+        {/each}
+        </ul>
+    {/if}
     {#if schedule && schedule.length > 0 && showSchedule}
     <p>
         <button on:click={() => {showSchedule = !showSchedule}}>Hide Schedule</button>
