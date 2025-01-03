@@ -24,29 +24,29 @@ const saveBetAndWager = async (betTrackerData) => {
     for (const betData of betTrackerData) {
       try {
         // Extract the contest details for the bet document
-        const contest = betData.contest || {};
-        const betDocument = {
-          ...betData.bet, // Include all bet fields
-        };
+        // const contest = betData.contest || {};
+        // const betDocument = {
+        //   ...betData.bet, // Include all bet fields
+        // };
   
-        // Save the bet object to the "bet" collection under the document "/users/kjdadada/wagertracker/1"
-        const betRef = await db.collection('users')
-          .doc('kjdadada')
-          .collection('wagertracker')
-          .doc('1')
-          .collection('bet')
-          .add(betDocument);
+        // // Save the bet object to the "bet" collection under the document "/users/kjdadada/wagertracker/1"
+        // const betRef = await db.collection('users')
+        //   .doc('KqrwLKqtCoUrDzlZ9BtD5vbMKBE2')
+        //   .collection('wagertracker')
+        //   .doc('1')
+        //   .collection('bet')
+        //   .add(betDocument);
   
-        console.log(`Bet saved with ID: ${betRef.id}`);
+        // console.log(`Bet saved with ID: ${betRef.id}`);
   
         // Save the wager object to the "wager" collection under the same path
         const wagerData = {
           ...betData.wager,  // Include all wager data
-          bet: { id: betRef.id, description: betData.bet.description,result: betData.bet.result }   // Add betId field to link to the bet document
+          bets: [betData.bet]   // Add betId field to link to the bet document
         };
   
         const wagerRef = await db.collection('users')
-          .doc('kjdadada')
+          .doc('KqrwLKqtCoUrDzlZ9BtD5vbMKBE2')
           .collection('wagertracker')
           .doc('1')
           .collection('wager')

@@ -35,6 +35,8 @@ const createAuthStore = () => {
             const token = credential.accessToken;
             // The signed-in user info.
             const user = result.user;
+            console.log("12user",user)
+
             // IdP data available using getAdditionalUserInfo(result)
             console.log(user)
             // ...

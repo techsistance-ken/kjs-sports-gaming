@@ -3656,5 +3656,687 @@
       "competitor2": "Browns",
       "competitor1": "Broncos"
     }
+  },
+  {
+    "wager": {
+      "wagerDate": "2024-12-06T06:00:00.000Z",
+      "result": "WIN",
+      "risk": 10,
+      "totalOdds": -115,
+      "potentialPayout": 18.695652173913047,
+      "totalNet": 8.695652173913047
+    },
+    "bet": {
+      "betDate": "2024-12-06T06:00:00.000Z",
+      "description": "J. Jacobs Under 75.5 Rush",
+      "threshold": 75.5,
+      "betThresholdResult": 66,
+      "result": "WIN",
+      "oddsAmerican": -115,
+      "type": "Player Prop",
+      "subject": "J. Jacobs",
+      "vsSubject": "",
+      "overUnder": "Under",
+      "tags": "",
+      "sport": "NFL",
+      "competitor2": "Packers",
+      "competitor1": "Lions"
+    },
+    "contest": {
+      "sport": "NFL",
+      "competitor2": "Packers",
+      "competitor1": "Lions"
+    }
+  },
+  {
+    "wager": {
+      "wagerDate": "2024-12-06T06:00:00.000Z",
+      "result": "LOSS",
+      "risk": 10,
+      "totalOdds": -115,
+      "potentialPayout": 18.695652173913047,
+      "totalNet": -10
+    },
+    "bet": {
+      "betDate": "2024-12-06T06:00:00.000Z",
+      "description": "J. Reed Over 69.5 Rush/Rec Yards",
+      "threshold": 69.5,
+      "betThresholdResult": 0,
+      "result": "LOSS",
+      "oddsAmerican": -115,
+      "type": "Player Prop",
+      "subject": "J. Reed",
+      "vsSubject": "",
+      "overUnder": "Over",
+      "tags": "",
+      "sport": "NFL",
+      "competitor2": "Packers",
+      "competitor1": "Lions"
+    },
+    "contest": {
+      "sport": "NFL",
+      "competitor2": "Packers",
+      "competitor1": "Lions"
+    }
+  },
+  {
+    "wager": {
+      "wagerDate": "2024-12-06T06:00:00.000Z",
+      "result": "LOSS",
+      "risk": 10,
+      "totalOdds": 1300,
+      "potentialPayout": 140,
+      "totalNet": -10
+    },
+    "bet": {
+      "betDate": "2024-12-06T06:00:00.000Z",
+      "description": "Goff, Love 40+ Pass Yds each Qtr",
+      "threshold": 39.5,
+      "betThresholdResult": 0,
+      "result": "LOSS",
+      "oddsAmerican": 1300,
+      "type": "Game Special",
+      "subject": "Goff, Love",
+      "vsSubject": "",
+      "overUnder": "",
+      "tags": "",
+      "sport": "NFL",
+      "competitor2": "Packers",
+      "competitor1": "Lions"
+    },
+    "contest": {
+      "sport": "NFL",
+      "competitor2": "Packers",
+      "competitor1": "Lions"
+    }
+  },
+  {
+    "wager": {
+      "wagerDate": "2024-12-06T06:00:00.000Z",
+      "result": "WIN",
+      "risk": 10,
+      "totalOdds": 114,
+      "potentialPayout": 21.4,
+      "totalNet": 11.399999999999999
+    },
+    "bet": {
+      "betDate": "2024-12-06T06:00:00.000Z",
+      "description": "Packers Points Over 26.5",
+      "threshold": 26.5,
+      "betThresholdResult": 31,
+      "result": "WIN",
+      "oddsAmerican": 114,
+      "type": "Team Prop",
+      "subject": "Packers",
+      "vsSubject": "Lions",
+      "overUnder": "",
+      "tags": "",
+      "sport": "NFL",
+      "competitor2": "Packers",
+      "competitor1": "Lions"
+    },
+    "contest": {
+      "sport": "NFL",
+      "competitor2": "Packers",
+      "competitor1": "Lions"
+    }
+  },
+  {
+    "wager": {
+      "wagerDate": "2024-12-07T06:00:00.000Z",
+      "result": "WIN",
+      "risk": 20,
+      "totalOdds": -128,
+      "potentialPayout": 35.625,
+      "totalNet": 15.625
+    },
+    "bet": {
+      "betDate": "2024-12-07T06:00:00.000Z",
+      "description": "Boise St ML vs UNLV",
+      "threshold": 0.5,
+      "betThresholdResult": 14,
+      "result": "WIN",
+      "oddsAmerican": -128,
+      "type": "Moneyline",
+      "subject": "Boise St",
+      "vsSubject": "UNLV",
+      "overUnder": "",
+      "tags": "",
+      "sport": "NCAAF",
+      "competitor2": "UNLV",
+      "competitor1": "Boise St"
+    },
+    "contest": {
+      "sport": "NCAAF",
+      "competitor2": "UNLV",
+      "competitor1": "Boise St"
+    }
+  },
+  {
+    "wager": {
+      "wagerDate": "2024-12-07T06:00:00.000Z",
+      "result": "LOSS",
+      "risk": 10,
+      "totalOdds": -165,
+      "potentialPayout": 16.060606060606062,
+      "totalNet": -10
+    },
+    "bet": {
+      "betDate": "2024-12-07T06:00:00.000Z",
+      "description": "DU ML vs W. Mich",
+      "threshold": 0.5,
+      "betThresholdResult": 0,
+      "result": "LOSS",
+      "oddsAmerican": -165,
+      "type": "Moneyline",
+      "subject": "DU",
+      "vsSubject": "W. Michigan",
+      "overUnder": "",
+      "tags": "",
+      "sport": "NCAAHM",
+      "competitor2": "DU",
+      "competitor1": "W. Mich"
+    },
+    "contest": {
+      "sport": "NCAAHM",
+      "competitor2": "DU",
+      "competitor1": "W. Mich"
+    }
+  },
+  {
+    "wager": {
+      "wagerDate": "2024-12-08T06:00:00.000Z",
+      "result": "LOSS",
+      "risk": 10,
+      "totalOdds": -130,
+      "potentialPayout": 17.692307692307693,
+      "totalNet": -10
+    },
+    "bet": {
+      "betDate": "2024-12-08T06:00:00.000Z",
+      "description": "Texas ML vs Georgia",
+      "threshold": 0.5,
+      "betThresholdResult": 0,
+      "result": "LOSS",
+      "oddsAmerican": -130,
+      "type": "Moneyline",
+      "subject": "Texas",
+      "vsSubject": "Georgia",
+      "overUnder": "",
+      "tags": "",
+      "sport": "NCAAF",
+      "competitor2": "Georgia",
+      "competitor1": "Texas"
+    },
+    "contest": {
+      "sport": "NCAAF",
+      "competitor2": "Georgia",
+      "competitor1": "Texas"
+    }
+  },
+  {
+    "wager": {
+      "wagerDate": "2024-12-08T06:00:00.000Z",
+      "result": "WIN",
+      "risk": 10,
+      "totalOdds": -110,
+      "potentialPayout": 19.09090909090909,
+      "totalNet": 9.09090909090909
+    },
+    "bet": {
+      "betDate": "2024-12-08T06:00:00.000Z",
+      "description": "ASU ML vs BYU",
+      "threshold": 0.5,
+      "betThresholdResult": 1,
+      "result": "WIN",
+      "oddsAmerican": -110,
+      "type": "Moneyline",
+      "subject": "ASU",
+      "vsSubject": "BYU",
+      "overUnder": "",
+      "tags": "",
+      "sport": "NCAAF",
+      "competitor2": "ASU",
+      "competitor1": "Iowa St"
+    },
+    "contest": {
+      "sport": "NCAAF",
+      "competitor2": "ASU",
+      "competitor1": "Iowa St"
+    }
+  },
+  {
+    "wager": {
+      "wagerDate": "2024-12-08T06:00:00.000Z",
+      "result": "WIN",
+      "risk": 20,
+      "totalOdds": -120,
+      "potentialPayout": 36.66666666666667,
+      "totalNet": 16.66666666666667
+    },
+    "bet": {
+      "betDate": "2024-12-08T06:00:00.000Z",
+      "description": "Oregon ML vs Penn St",
+      "threshold": 0.5,
+      "betThresholdResult": 1,
+      "result": "WIN",
+      "oddsAmerican": -120,
+      "type": "Moneyline",
+      "subject": "Oregon",
+      "vsSubject": "Penn St",
+      "overUnder": "",
+      "tags": "",
+      "sport": "NCAAF",
+      "competitor2": "Penn St",
+      "competitor1": "Oregon"
+    },
+    "contest": {
+      "sport": "NCAAF",
+      "competitor2": "Penn St",
+      "competitor1": "Oregon"
+    }
+  },
+  {
+    "wager": {
+      "wagerDate": "2024-12-09T06:00:00.000Z",
+      "result": "WIN",
+      "risk": 10,
+      "totalOdds": -112,
+      "potentialPayout": 18.928571428571427,
+      "totalNet": 8.928571428571427
+    },
+    "bet": {
+      "betDate": "2024-12-09T06:00:00.000Z",
+      "description": "Pathers +14 vs Eagles",
+      "threshold": 13.5,
+      "betThresholdResult": -13,
+      "result": "WIN",
+      "oddsAmerican": -112,
+      "type": "Spread",
+      "subject": "Panthers",
+      "vsSubject": "Eagles",
+      "overUnder": "",
+      "tags": "",
+      "sport": "NFL",
+      "competitor2": "Panthers",
+      "competitor1": "Eagles"
+    },
+    "contest": {
+      "sport": "NFL",
+      "competitor2": "Panthers",
+      "competitor1": "Eagles"
+    }
+  },
+  {
+    "wager": {
+      "wagerDate": "2024-12-09T06:00:00.000Z",
+      "result": "WIN",
+      "risk": 10,
+      "totalOdds": -110,
+      "potentialPayout": 19.09090909090909,
+      "totalNet": 9.09090909090909
+    },
+    "bet": {
+      "betDate": "2024-12-09T06:00:00.000Z",
+      "description": "Cousins Over 244.5 Pass Yds",
+      "threshold": 244.5,
+      "betThresholdResult": 344,
+      "result": "WIN",
+      "oddsAmerican": -110,
+      "type": "Player Prop",
+      "subject": "Cousints",
+      "vsSubject": "",
+      "overUnder": "Over",
+      "tags": "",
+      "sport": "NFL",
+      "competitor2": "Vikings",
+      "competitor1": "Falcons"
+    },
+    "contest": {
+      "sport": "NFL",
+      "competitor2": "Vikings",
+      "competitor1": "Falcons"
+    }
+  },
+  {
+    "wager": {
+      "wagerDate": "2024-12-09T06:00:00.000Z",
+      "result": "LOSS",
+      "risk": 10,
+      "totalOdds": -110,
+      "potentialPayout": 19.09090909090909,
+      "totalNet": -10
+    },
+    "bet": {
+      "betDate": "2024-12-09T06:00:00.000Z",
+      "description": "Titans -6.5 vs Jaguars",
+      "threshold": 6.5,
+      "betThresholdResult": -3,
+      "result": "LOSS",
+      "oddsAmerican": -110,
+      "type": "Spread",
+      "subject": "Titans",
+      "vsSubject": "Jaguars",
+      "overUnder": "",
+      "tags": "",
+      "sport": "NFL",
+      "competitor2": "Jaguars",
+      "competitor1": "Titans"
+    },
+    "contest": {
+      "sport": "NFL",
+      "competitor2": "Jaguars",
+      "competitor1": "Titans"
+    }
+  },
+  {
+    "wager": {
+      "wagerDate": "2024-12-09T06:00:00.000Z",
+      "result": "WIN",
+      "risk": 10,
+      "totalOdds": -115,
+      "potentialPayout": 18.695652173913047,
+      "totalNet": 8.695652173913047
+    },
+    "bet": {
+      "betDate": "2024-12-09T06:00:00.000Z",
+      "description": "MVS Rush/Rec Over 36.5",
+      "threshold": 36.5,
+      "betThresholdResult": 51,
+      "result": "WIN",
+      "oddsAmerican": -115,
+      "type": "Player Prop",
+      "subject": "MVS",
+      "vsSubject": "",
+      "overUnder": "Over",
+      "tags": "",
+      "sport": "NFL",
+      "competitor2": "Saints",
+      "competitor1": "Giants"
+    },
+    "contest": {
+      "sport": "NFL",
+      "competitor2": "Saints",
+      "competitor1": "Giants"
+    }
+  },
+  {
+    "wager": {
+      "wagerDate": "2024-12-09T06:00:00.000Z",
+      "result": "LOSS",
+      "risk": 10,
+      "totalOdds": 310,
+      "potentialPayout": 41,
+      "totalNet": -10
+    },
+    "bet": {
+      "betDate": "2024-12-09T06:00:00.000Z",
+      "description": "Winston 300+ Pass Yards",
+      "threshold": 299.5,
+      "betThresholdResult": 212,
+      "result": "LOSS",
+      "oddsAmerican": 310,
+      "type": "Player Prop",
+      "subject": "J. Winston",
+      "vsSubject": "",
+      "overUnder": "Over",
+      "tags": "",
+      "sport": "NFL",
+      "competitor2": "Browns",
+      "competitor1": "Steelers"
+    },
+    "contest": {
+      "sport": "NFL",
+      "competitor2": "Browns",
+      "competitor1": "Steelers"
+    }
+  },
+  {
+    "wager": {
+      "wagerDate": "2024-12-09T06:00:00.000Z",
+      "result": "LOSS",
+      "risk": 10,
+      "totalOdds": 140,
+      "potentialPayout": 24,
+      "totalNet": -10
+    },
+    "bet": {
+      "betDate": "2024-12-09T06:00:00.000Z",
+      "description": "Bears ML vs 49ers",
+      "threshold": 0.5,
+      "betThresholdResult": -20,
+      "result": "LOSS",
+      "oddsAmerican": 140,
+      "type": "Moneyline",
+      "subject": "Bears",
+      "vsSubject": "49ers",
+      "overUnder": "",
+      "tags": "",
+      "sport": "NFL",
+      "competitor2": "Bears",
+      "competitor1": "49ers"
+    },
+    "contest": {
+      "sport": "NFL",
+      "competitor2": "Bears",
+      "competitor1": "49ers"
+    }
+  },
+  {
+    "wager": {
+      "wagerDate": "2024-12-09T06:00:00.000Z",
+      "result": "LOSS",
+      "risk": 10,
+      "totalOdds": 170,
+      "potentialPayout": 27,
+      "totalNet": -10
+    },
+    "bet": {
+      "betDate": "2024-12-09T06:00:00.000Z",
+      "description": "C. Williams 250+ Pass Yards",
+      "threshold": 249.5,
+      "betThresholdResult": 134,
+      "result": "LOSS",
+      "oddsAmerican": 170,
+      "type": "Player Prop",
+      "subject": "C. Williams",
+      "vsSubject": "",
+      "overUnder": "Over",
+      "tags": "",
+      "sport": "NFL",
+      "competitor2": "Bears",
+      "competitor1": "49ers"
+    },
+    "contest": {
+      "sport": "NFL",
+      "competitor2": "Bears",
+      "competitor1": "49ers"
+    }
+  },
+  {
+    "wager": {
+      "wagerDate": "2024-12-10T06:00:00.000Z",
+      "result": "WIN",
+      "risk": 10,
+      "totalOdds": 130,
+      "potentialPayout": 23,
+      "totalNet": 13
+    },
+    "bet": {
+      "betDate": "2024-12-10T06:00:00.000Z",
+      "description": "Burrow Over 300 Pass Yds",
+      "threshold": 299.5,
+      "betThresholdResult": 334,
+      "result": "WIN",
+      "oddsAmerican": 130,
+      "type": "Player Prop",
+      "subject": "J. Burrow",
+      "vsSubject": "",
+      "overUnder": "Over",
+      "tags": "",
+      "sport": "NFL",
+      "competitor2": "Bengals",
+      "competitor1": "Cowboys"
+    },
+    "contest": {
+      "sport": "NFL",
+      "competitor2": "Bengals",
+      "competitor1": "Cowboys"
+    }
+  },
+  {
+    "wager": {
+      "wagerDate": "2024-12-10T06:00:00.000Z",
+      "result": "LOSS",
+      "risk": 10,
+      "totalOdds": 300,
+      "potentialPayout": 40,
+      "totalNet": -10
+    },
+    "bet": {
+      "betDate": "2024-12-10T06:00:00.000Z",
+      "description": "Rush Over 300 Pass Yds",
+      "threshold": 299.5,
+      "betThresholdResult": 210,
+      "result": "LOSS",
+      "oddsAmerican": 300,
+      "type": "Player Prop",
+      "subject": "C. Rush",
+      "vsSubject": "",
+      "overUnder": "Over",
+      "tags": "",
+      "sport": "NFL",
+      "competitor2": "Bengals",
+      "competitor1": "Cowboys"
+    },
+    "contest": {
+      "sport": "NFL",
+      "competitor2": "Bengals",
+      "competitor1": "Cowboys"
+    }
+  },
+  {
+    "wager": {
+      "wagerDate": "2024-12-12T06:00:00.000Z",
+      "result": "WIN",
+      "risk": 10,
+      "totalOdds": 130,
+      "potentialPayout": 23,
+      "totalNet": 13
+    },
+    "bet": {
+      "betDate": "2024-12-12T06:00:00.000Z",
+      "description": "Rams ML vs 49ers",
+      "threshold": 0.5,
+      "betThresholdResult": 6,
+      "result": "WIN",
+      "oddsAmerican": 130,
+      "type": "Moneyline",
+      "subject": "Rams",
+      "vsSubject": "49ers",
+      "overUnder": "",
+      "tags": "",
+      "sport": "NFL",
+      "competitor2": "Rams",
+      "competitor1": "49ers"
+    },
+    "contest": {
+      "sport": "NFL",
+      "competitor2": "Rams",
+      "competitor1": "49ers"
+    }
+  },
+  {
+    "wager": {
+      "wagerDate": "2024-12-12T06:00:00.000Z",
+      "result": "LOSS",
+      "risk": 10,
+      "totalOdds": -115,
+      "potentialPayout": 18.695652173913047,
+      "totalNet": -10
+    },
+    "bet": {
+      "betDate": "2024-12-12T06:00:00.000Z",
+      "description": "FG Yds Under 132",
+      "threshold": 131.5,
+      "betThresholdResult": 200,
+      "result": "LOSS",
+      "oddsAmerican": -115,
+      "type": "Game Special",
+      "subject": "Rams, 49ers",
+      "vsSubject": "",
+      "overUnder": "",
+      "tags": "",
+      "sport": "NFL",
+      "competitor2": "Rams",
+      "competitor1": "49ers"
+    },
+    "contest": {
+      "sport": "NFL",
+      "competitor2": "Rams",
+      "competitor1": "49ers"
+    }
+  },
+  {
+    "wager": {
+      "wagerDate": "2024-12-12T06:00:00.000Z",
+      "result": "WIN",
+      "risk": 10,
+      "totalOdds": -115,
+      "potentialPayout": 18.695652173913047,
+      "totalNet": 8.695652173913047
+    },
+    "bet": {
+      "betDate": "2024-12-12T06:00:00.000Z",
+      "description": "B. Purdy Under 17 Rush Yds",
+      "threshold": 16.5,
+      "betThresholdResult": 3,
+      "result": "WIN",
+      "oddsAmerican": -115,
+      "type": "Player Prop",
+      "subject": "B. Purdy",
+      "vsSubject": "",
+      "overUnder": "Under",
+      "tags": "",
+      "sport": "NFL",
+      "competitor2": "Rams",
+      "competitor1": "49ers"
+    },
+    "contest": {
+      "sport": "NFL",
+      "competitor2": "Rams",
+      "competitor1": "49ers"
+    }
+  },
+  {
+    "wager": {
+      "wagerDate": "2024-12-12T06:00:00.000Z",
+      "result": "WIN",
+      "risk": 10,
+      "totalOdds": -110,
+      "potentialPayout": 19.09090909090909,
+      "totalNet": 9.09090909090909
+    },
+    "bet": {
+      "betDate": "2024-12-12T06:00:00.000Z",
+      "description": "K. Williams Over 18 Rush Att.",
+      "threshold": 17.5,
+      "betThresholdResult": 29,
+      "result": "WIN",
+      "oddsAmerican": -110,
+      "type": "Player Prop",
+      "subject": "K. Williams",
+      "vsSubject": "",
+      "overUnder": "Over",
+      "tags": "",
+      "sport": "NFL",
+      "competitor2": "Rams",
+      "competitor1": "49ers"
+    },
+    "contest": {
+      "sport": "NFL",
+      "competitor2": "Rams",
+      "competitor1": "49ers"
+    }
   }
 ]

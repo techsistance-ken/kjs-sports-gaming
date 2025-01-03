@@ -1,21 +1,14 @@
 <script>
-	import { map, prop, toLower } from 'ramda';
+	import { assoc, path, map, keys, propEq, prop, length, mergeAll } from 'ramda';
 	import { get } from 'svelte/store';
-	import { NFLTeams } from '../store/NFLTeams';
-    import { addWager } from '../store/wagerStore';
-	import BetSlip from './betinputs/BetSlip.svelte';
-    import FootballCompetition from './betinputs/FootballCompetition.svelte';
-    import FootballSpread from './betinputs/FootballSpread.svelte'
-    import FootballMoneyLine from './betinputs/FootballMoneyLine.svelte'
-    import FootballOverUnder from './betinputs/FootballOverUnder.svelte'
-    import FootballGameProp from './betinputs/FootballGameProp.svelte'
-
-
-    export let sport = "";
-    export let league = "";
-    export let user = null;
+	import { NFLTeams } from '../../store/NFLTeams';
+	import { writable } from 'svelte/store';
+	import BetSlip from './BetSlip.svelte';
+	import { Button } from 'carbon-components-svelte';
+	import BetFields from './BetFields.svelte';
 
 	let betSlipRef;
+
 	let riskAmount = 10;
 	let wagerTotalOdds = -110;
 
@@ -57,9 +50,6 @@
 			competitor1: competitionData.homeTeam,
 			competitor2: competitionData.awayTeam,
 			gameDate: competitionData.gameDate,
-            threshold: fullBetData.threshold,
-            subject: fullBetData.subject,
-            vsSubject: fullBetData.vsSubject,
 			odds: fullBetData.odds
 		});
 	}
@@ -77,76 +67,48 @@
 	function changeBetType() {
 		betTypeSelected = competitionData.betType;
 	}
-
-    function getFootballTeams() {
-        if(toLower(sport) == "football" && toLower(league) == "nfl") {
-            return nflTeams;
-        }
-        return [];
-    }
-
-
-    function saveAWager(wagerSaveEvent) {
-        const wager = wagerSaveEvent.detail
-
-        console.log("BetInput - SaveAWager")
-        console.log(wager)
-        if(user) {
-            console.log(`adding Wager for: ${user.email}`)
-            addWager(user.uid, wager)
-
-        }
-    }
 </script>
 
 <div class="form-container">
-    {#if toLower(sport) == "football"}
-        <FootballCompetition
-            {betTypes}
-            on:betTypeChange={changeBetType}
-            data={competitionData}
-            teamsList={map(prop('teamName'))(getFootballTeams())}
-        />
-        {#if betTypeSelected == 'Spread'}
-            <FootballSpread
-                on:anyUpdate={(d) => {
-                    console.log('hi', d);
-                    fullBetData = d.detail;
-                }}
-                {competitionData}
-            />
-        {:else if betTypeSelected == 'Moneyline'}
-            <FootballMoneyLine
-                on:anyUpdate={(d) => {
-                    console.log('hi', d);
-                    fullBetData = d.detail;
-                }}
-                {competitionData}
-            />
-        {:else if betTypeSelected == 'Over Under'}
-            <FootballOverUnder
-                on:anyUpdate={(d) => {
-                    console.log('hi', d);
-                    fullBetData = d.detail;
-                }}
-                {competitionData}
-            />
-        {/if}
-    {/if}
+	<FootballCompetition
+		{betTypes}
+		on:betTypeChange={changeBetType}
+		data={competitionData}
+		teamsList={map(prop('teamName'))(nflTeams)}
+	/>
 
+	{#if betTypeSelected == 'Spread'}
+		<FootballSpread
+			on:anyUpdate={(d) => {
+				console.log('hi', d);
+				fullBetData = d.detail;
+			}}
+			{competitionData}
+		/>
+	{:else if betTypeSelected == 'Moneyline'}
+		<FootballMoneyLine
+			on:anyUpdate={(d) => {
+				console.log('hi', d);
+				fullBetData = d.detail;
+			}}
+			{competitionData}
+		/>
+	{:else if betTypeSelected == 'Over Under'}
+		<FootballOverUnder
+			on:anyUpdate={(d) => {
+				console.log('hi', d);
+				fullBetData = d.detail;
+			}}
+			{competitionData}
+		/>
+	{/if}
 	<div class="form-actions">
 		<button class="button button-save" on:click={saveForm}>Add to Betslip</button>
 		<button class="button button-cancel" on:click={cancelForm}>Clear Bet</button>
 	</div>
 </div>
 
-<div>
-    {#if user}
-        <BetSlip bind:this={betSlipRef} on:saveWager={saveAWager}/>
-    {:else}
-        Sign In to create a bet slip
-    {/if}
-</div>
+<BetSlip bind:this={betSlipRef} />
 
 <style>
 	.form-container {

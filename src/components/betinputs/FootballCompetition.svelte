@@ -1,6 +1,6 @@
 <script>
     import { createEventDispatcher } from 'svelte';
-    import {keys, path} from "ramda"
+    import {keys, length, path} from "ramda"
     // export let formData;
 
 
@@ -23,19 +23,27 @@
 </script>
 <div class="form-group">
     <label class="form-label" for="home">Home Team</label>
-    <select id="home" class="form-input" bind:value={data.homeTeam} >
-        <option value="">--Please choose an option--</option>
-        {#each teamsList as opt}
-            <option value={opt}>{opt}</option>
-        {/each}
-    </select>    
+        {#if length(teamsList)}
+        <select id="home" class="form-input" bind:value={data.homeTeam} >
+            <option value="">--Please choose an option--</option>
+            {#each teamsList as opt}
+                <option value={opt}>{opt}</option>
+            {/each}
+        </select>    
+        {:else}
+        <input id="home" class="form-input" type="text" bind:value={data.homeTeam}/>
+        {/if}
     <label class="form-label" for="away">Away Team</label>
+    {#if length(teamsList)}
     <select id="away" class="form-input" bind:value={data.awayTeam} >
         <option value="">--Please choose an option--</option>
         {#each teamsList as opt}
             <option value={opt}>{opt}</option>
         {/each}
     </select>        
+    {:else}
+        <input id="away" class="form-input" type="text" bind:value={data.awayTeam}/>
+    {/if}
     <label class="form-label" for="gameDate">Game Date</label>
     <input id=gameDate class="form-input" type="date" bind:value={data.gameDate}/>
 

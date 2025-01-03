@@ -1,5 +1,8 @@
 <script>
 	import {map, prop, length, append} from "ramda";
+	import { addWager } from "../../store/wagerStore";
+	import { createEventDispatcher } from 'svelte';
+	const dispatch = createEventDispatcher();
 
 	let riskAmount = 10;
 	let wagerTotalOdds = -110;
@@ -14,6 +17,7 @@
 	 */
 	function addBet(bet) {
 			bets = append(bet)(bets)
+			if(length(bets) > 0) console.log("bet0",bets[0])
 		    wagerTotalOdds = calculateParlayOdds(map(prop('odds'))(bets));
 	}
 	// Function to delete a bet from the BetSlip
@@ -80,7 +84,13 @@
 		return parlayOdds;
 	}
 	const saveWager = () => {
-		console.log('Save Wager');
+		dispatch("saveWager", {
+			risk: riskAmount,
+			totalOdds: wagerTotalOdds,
+			bets,
+			wagerDate: new Date(),
+			potentialPayout: calculatePayout(wagerTotalOdds,riskAmount)
+		})
 	};
 </script>
 

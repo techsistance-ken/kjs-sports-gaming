@@ -6,7 +6,7 @@ import { getAuth } from "firebase/auth";
 import { 
   Timestamp,
   getCountFromServer,
-  doc, query, getDoc, getDocs, getFirestore, collection, orderBy, startAfter, limit, addDoc } from "firebase/firestore"; 
+  doc, deleteDoc, updateDoc, query, getDoc, getDocs, getFirestore, collection, orderBy, startAfter, limit, addDoc } from "firebase/firestore"; 
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -30,20 +30,46 @@ const auth = getAuth(app);
 let db = getFirestore(app);
 
 // Function to fetch all wagers
-export const fetchWagers = async () => {
-  let wagersRef = collection(db, 'users/kjdadada/wagertracker/1/wager');
+export const fetchWagers = async (userId) => {
+  let wagersRef = collection(db, `users/${userId}/wagertracker/1/wager`);
+
   
-  // Fetch all wagers data (no pagination)
-  const wagersQuery = query(wagersRef);
-  const querySnapshot = await getDocs(wagersQuery);
-  const wagers = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+  try {
+    const wagersQuery = query(wagersRef);
+    const querySnapshot = await getDocs(wagersQuery);
+    const wagers = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
-  // Fetch the total count of wagers (optional, for statistics or display)
-  const countQuery = query(wagersRef);
-  const countSnapshot = await getCountFromServer(countQuery);
-  const totalWagers = countSnapshot.data().count;
+    // Fetch the total count of wagers (optional, for statistics or display)
+    const countQuery = query(wagersRef);
+    const countSnapshot = await getCountFromServer(countQuery);
+    const totalWagers = countSnapshot.data().count;
 
-  return { wagers, totalWagers };
+    return { wagers, totalWagers };
+  } catch (error) {
+    return { wagers: [], totalWagers: 0}
+  }
+};
+
+
+// Function to fetch all wagers
+export const fetchBets = async (userId) => {
+  let betsRef = collection(db, `users/${userId}/wagertracker/1/bet`);
+
+  
+  try {
+    const betsQuery= query(betsRef);
+    const querySnapshot = await getDocs(betsQuery);
+    const bets= querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+    // // Fetch the total count of wagers (optional, for statistics or display)
+    // const countQuery = query(wagersRef);
+    // const countSnapshot = await getCountFromServer(countQuery);
+    // const totalWagers = countSnapshot.data().count;
+
+    return bets;
+  } catch (error) {
+    return [];
+  }
 };
 
 export {
@@ -51,9 +77,13 @@ export {
     doc,
     Timestamp,
     getDoc,
+    updateDoc,
+    addDoc,
+    deleteDoc,
     getDocs,
     collection,
     query,
+    orderBy,
     getCountFromServer,
     db
 }

@@ -9,6 +9,7 @@
 	import FootballCompetition from './FootballCompetition.svelte';
 	import FootballSpread from './FootballSpread.svelte';
 	import FootballMoneyLine from './FootballMoneyLine.svelte';
+	import FootballOverUnder from './FootballOverUnder.svelte';
 
 	let betSlipRef;
 
@@ -48,12 +49,14 @@
 	];
 
 	function saveForm() {
-
 		betSlipRef.addBet({
 			description: fullBetData.description,
 			competitor1: competitionData.homeTeam,
 			competitor2: competitionData.awayTeam,
 			gameDate: competitionData.gameDate,
+			subject: fullBetData.subject,
+			vsSubject: fullBetData.vsSubject,
+			threshold: fullBetData.threshold,
 			odds: fullBetData.odds
 		});
 	}
@@ -73,7 +76,6 @@
 	}
 </script>
 
-<Button on:click={changeBetType}>Test New Field</Button>
 <div class="form-container">
 	<FootballCompetition
 		{betTypes}
@@ -83,9 +85,29 @@
 	/>
 
 	{#if betTypeSelected == 'Spread'}
-		<FootballSpread on:anyUpdate={d => {console.log("hi",d); fullBetData = d.detail;}} {competitionData} />
+		<FootballSpread
+			on:anyUpdate={(d) => {
+				console.log('hi', d);
+				fullBetData = d.detail;
+			}}
+			{competitionData}
+		/>
 	{:else if betTypeSelected == 'Moneyline'}
-		<FootballMoneyLine on:anyUpdate={d => {console.log("hi",d); fullBetData = d.detail;}} {competitionData} />
+		<FootballMoneyLine
+			on:anyUpdate={(d) => {
+				console.log('hi', d);
+				fullBetData = d.detail;
+			}}
+			{competitionData}
+		/>
+	{:else if betTypeSelected == 'Over Under'}
+		<FootballOverUnder
+			on:anyUpdate={(d) => {
+				console.log('hi', d);
+				fullBetData = d.detail;
+			}}
+			{competitionData}
+		/>
 	{/if}
 	<div class="form-actions">
 		<button class="button button-save" on:click={saveForm}>Add to Betslip</button>
@@ -93,7 +115,6 @@
 	</div>
 </div>
 
-description: {JSON.stringify(fullBetData)}
 <BetSlip bind:this={betSlipRef} />
 
 <style>
