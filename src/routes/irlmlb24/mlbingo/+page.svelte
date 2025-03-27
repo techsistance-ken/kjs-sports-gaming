@@ -40,18 +40,18 @@ import { keys, prop, forEach, assoc, assocPath, length, defaultTo, range, groupB
 
     let lastUpdate = null
     onMount(async () => {
-        const teamsCollection = collection(db,`/irl_mlb24/${season}/teams`)
+        const teamsCollection = collection(db,`/irl_mlb25/${season}/teams`)
         const teamCollectionQuery = await query(teamsCollection);
         const teamsSnapshot = await getDocs(teamCollectionQuery);
         teams = [];
         teamsSnapshot.forEach(x => teams.push(x.data()))
 
         forEach(async team => {
-            const runsCollection = collection(db,`/irl_mlb24/${season}/teams/${team.abbr}/teamEvents`)
+            const runsCollection = collection(db,`/irl_mlb25/${season}/teams/${team.abbr}/teamEvents`)
             const runsCollectionQuery = await query(runsCollection);
             const runsSnapshot = await getDocs(runsCollectionQuery)
 
-            const docRef = doc(db, "irl_mlb24", season);
+            const docRef = doc(db, "irl_mlb25", season);
             const docSnap = await getDoc(docRef);
 
             if (docSnap.exists()) {
