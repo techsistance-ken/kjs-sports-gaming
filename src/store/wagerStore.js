@@ -39,6 +39,7 @@ async function addWager(userID, newWager) {
     console.log("c")
     const addedWager = { id: docRef.id, ...newWager };
     console.log(`d: ${docRef.id}`)
+    console.log(`d: ${docRef.path}`)
 
     wagersStore.update(wagers => [...wagers, addedWager]);
     errorStore.set(null); // Clear any existing errors

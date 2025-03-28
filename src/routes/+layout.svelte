@@ -28,7 +28,7 @@
 </script>
 <svelte:window bind:innerWidth bind:innerHeight />
 
-{#if pageName != "/irlmlb24/mlbingo"}
+{#if pageName.indexOf("mlbbingo") == -1}
   <Header company="KJs"   persistentHamburgerMenu={true} platformName="Sports+Gaming" bind:isSideNavOpen>
     <svelte:fragment slot="skip-to-content">
       <SkipToContent />
